@@ -13,6 +13,12 @@ exports.save = function (req, res) {
 
 };
 
+exports.allMatches = function (req,res) {
+
+  db.allMatches(function(result){
+    res.json(result).end();
+  });
+};
 
 exports.selectOneToLogin = function (req, res) {
     db.selectOne({userName: req.body.name}, function (result) {

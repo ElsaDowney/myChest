@@ -27,6 +27,25 @@ exports.save = function () {
     //.......
 };
 
+exports.allMatches=function(){
+
+  MongoClient.connect(url, function (err, db) {
+    allMatches(db, function (result) {
+      db.close();
+      callback(result);
+    });
+  });
+
+  const allMatches=function(db,callback){
+
+    const collection=db.collection('matches');
+    collection.find({}).toArray(function(err,docs){
+      console.log(docs);
+      callback(docs);
+    });
+  };
+};
+
 
 exports.selectOne = function (name, callback) {
 
