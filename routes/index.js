@@ -4,8 +4,14 @@ const app = new express();
 const router = express.Router();
 
 router.get('/clothes',actions.findAll);
-
 router.post('/clothes',actions.save);
+
+
+
+router.post('/login',actions.selectOneToLogin);
+router.post('/register',actions.saveToRegister);
+
+
 
 //......
 

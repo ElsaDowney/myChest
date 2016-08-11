@@ -7,8 +7,33 @@ exports.findAll = function(req,res){
   db.findAll(function(result){
     res.json(result).end();
   });
-}
+};
 
 exports.save = function(req,res){
 
-}
+};
+
+
+exports.selectOneToLogin = function (req,res) {
+  console.log(req.body);
+  db.selectOne({userName: req.body.name},function (result) {
+    if (result.length === 0) {
+      console.log("用户不存在");
+      res.send('0');
+    }
+    else if (result[0].password === req.body.pwd) {
+      console.log("登陆成功");
+      res.send('1');
+    }
+  })
+};
+
+
+exports.saveToRegister = function (req,res) {
+
+  const data = {userName: req.body.name, password: req.body.pwd};
+
+  db.register(data,function (result) {
+    res.send("1");
+  })
+};

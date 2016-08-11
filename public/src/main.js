@@ -1,8 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import App from "./components/App";
+import LoginAndRegister from "./components/login-register";
 
 render(
-  <App/>,
+  <LoginAndRegister/>,
   document.getElementById("app")
 );
+
+
