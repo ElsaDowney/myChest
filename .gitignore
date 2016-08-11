@@ -1,3 +1,4 @@
+.jshintrc
 
 ### Windows template
 # Windows image file caches
@@ -186,5 +187,3 @@ crashlytics-build.properties
 fabric.properties
 
 .idea
-
-/public/dist/
