@@ -21,8 +21,8 @@ exports.findAll = function(callback){
     callback(docs);
   });
 };
-}
+};
 
 exports.save = function(){
   //.......
-}
+};
