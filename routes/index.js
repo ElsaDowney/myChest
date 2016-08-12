@@ -11,7 +11,7 @@ router.post('/clothes',actions.save);
 router.post('/login',actions.selectOneToLogin);
 router.post('/register',actions.saveToRegister);
 
-router.post('/allMatches',actions.allMatches);
+router.get('/allMatches',actions.AllMatches);
 
 //......
 

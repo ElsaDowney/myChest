@@ -15,11 +15,11 @@ exports.save = function(req,res){
   });
 }
 
-exports.allMatches = function (req,res) {
+exports.AllMatches = function(req,res){
+    db.AllMatches(function(result){
+        res.json(result).end();
 
-  db.allMatches(function(result){
-    res.json(result).end();
-  });
+    });
 };
 
 exports.selectOneToLogin = function (req, res) {
