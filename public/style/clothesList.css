@@ -14,18 +14,24 @@
 
 .wrap-colthes{
   width: 68%;
-  margin: 10px auto;
+
+  margin: 100px auto;
   border: 1px solid #d2cdcd;
   border-radius: 5px;
 }
 
 .delete{
     position: relative;
-    top:-70px;
+    top: -70px;
     left: -30px;
+    /*display: none;*/
     /*background: block;*/
     /*opacity: 0.5;*/
-    /*border: 1px solid red;*/
+    border: 1px solid red;
+}
+
+.input-select{
+  display: none;
 }
 
 .btn-float{

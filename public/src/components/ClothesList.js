@@ -40,15 +40,22 @@ class ClothesList extends Component{
     allColthes.splice(index,1);
     this.setState({allColthes});
   }
+                                        　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+  setStyle(id){
+    $("#id").css.display = "inline";
+  }
 
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
       const imgUrl = `../../images/image${section.image}.png`;
       return (
         <div className="imgSize">
-          <img src={imgUrl}/>
-          <span className="glyphicon glyphicon-trash delete"
-                onClick={this.remove.bind(this,section)}></span>
+          <img src={imgUrl} id="show"
+              onfocus={this.setStyle.bind(this.id)}/>
+          <span className="delete"
+                onClick={this.remove.bind(this,section)}>X</span>
+              <input type="checkbox" name="selected" className="input-select"
+                    value={section._id}/>
         </div>
       )
     });
@@ -61,6 +68,18 @@ class ClothesList extends Component{
       </div>
     )
   }
+
+  matchClothes(){
+    $('.input-select').css("display","inline");
+  }
+
+  confirmMatch(){
+    const match = [];
+    $("input[name=selected]:checked").each(function(){
+      match.push($(this).val())
+    });
+  }
+  
   render(){
     const allColthes = this.state.allColthes;
     const clothesWithClass = [];
@@ -77,13 +96,15 @@ class ClothesList extends Component{
           clothesWithClass.push(clothesObj);
         }
       }
+      // console.log(clothesWithClass);
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
       })
       return (
         <div className="wrap-colthes">
           {clothes}
-          <button className="btn-float">搭配</button>
+          <button className="" onClick={this.matchClothes}>搭配</button>
+          <button className="btn-float" onClick={this.confirmMatch}>确认搭配</button>
           <p className="btn-foot"><button>点击添加类型</button></p>
         </div>
       )

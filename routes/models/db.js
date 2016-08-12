@@ -38,14 +38,9 @@ exports.findAll = function (callback) {
 
         const collection = db.collection('clothes');
         collection.find({}).toArray(function (err, docs) {
-            console.log(docs);
             callback(docs);
         });
     };
-};
-
-exports.save = function () {
-    //.......
 };
 
 exports.allMatches=function(){
