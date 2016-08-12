@@ -1,13 +1,5 @@
-import React from "react";
-import { render } from "react-dom";
-import LoginAndRegister from "./components/login-register";
-
-render(
-  <LoginAndRegister/>,
-  document.getElementById("login")
-);
-
 import { Router, Route, hashHistory,IndexRoute } from 'react-router';
+import React from "react";
 import {render} from "react-dom";
 import App from "./components/App";
 import Home from './components/Home'
