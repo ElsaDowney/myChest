@@ -9,9 +9,11 @@ exports.findAll = function (req, res) {
     });
 };
 
-exports.save = function (req, res) {
-
-};
+exports.save = function(req,res){
+  db.save(req.body,function(result){
+    res.json(result).end();
+  });
+}
 
 exports.allMatches = function (req,res) {
 

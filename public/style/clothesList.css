@@ -1,0 +1,39 @@
+*{
+  font-family: "微软雅黑";
+}
+
+.imgSize{
+  display: inline-block;
+}
+
+.imgSize img{
+  width:150px;
+  height:180px;
+  margin: 10px 10px;
+}
+
+.wrap-colthes{
+  width: 68%;
+  margin: 10px auto;
+  border: 1px solid #d2cdcd;
+  border-radius: 5px;
+}
+
+.delete{
+    position: relative;
+    top:-70px;
+    left: -30px;
+    /*background: block;*/
+    /*opacity: 0.5;*/
+    /*border: 1px solid red;*/
+}
+
+.btn-float{
+  position: fixed;
+  right: 18%;
+  top: 45%;
+}
+
+.btn-foot{
+  text-align: center;
+}
