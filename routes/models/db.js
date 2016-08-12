@@ -48,34 +48,20 @@ exports.save = function () {
     //.......
 };
 
-<<<<<<< HEAD
+
 exports.AllMatches=function(callback){
 
     MongoClient.connect(url, function (err, db) {
         AllMatches(db, function (result) {
-=======
-exports.allMatches = function () {
-
-    MongoClient.connect(url, function (err, db) {
-        allMatches(db, function (result) {
->>>>>>> 25725479f2f12f86ae3f06e329b2c4e3bb29ba1d
             db.close();
             callback(result);
         });
     });
 
-<<<<<<< HEAD
     const AllMatches=function(db,callback){
 
         const collection=db.collection('matches');
         collection.find({}).toArray(function(err,docs){
-=======
-    const allMatches = function (db, callback) {
-
-        const collection = db.collection('matches');
-        collection.find({}).toArray(function (err, docs) {
-            console.log(docs);
->>>>>>> 25725479f2f12f86ae3f06e329b2c4e3bb29ba1d
             callback(docs);
         });
     };
