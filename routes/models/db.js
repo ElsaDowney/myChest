@@ -16,7 +16,6 @@ exports.getAll = function(callback){
 
 
 exports.save = function(data, callback){
-  console.log(data);
   MongoClient.connect(url,function(err,db){
     const collection = db.collection('clothes');
     collection.insert(data,function(err,result){

@@ -2518,7 +2518,6 @@ webpackJsonp([1],[
 	      $.get("/clothes", function (data) {
 	        this.setState({ allColthes: data });
 	      }.bind(this));
-	      console.log(this.state.allSections);
 	      // this.setState({allColthes:array});
 	    }
 	  }, {
