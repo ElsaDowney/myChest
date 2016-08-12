@@ -15,11 +15,11 @@ exports.save = function(req,res){
   });
 }
 
-exports.allMatches = function (req,res) {
+exports.AllMatches = function(req,res){
+    db.AllMatches(function(result){
+        res.json(result).end();
 
-  db.allMatches(function(result){
-    res.json(result).end();
-  });
+    });
 };
 
 exports.selectOneToLogin = function (req, res) {
@@ -50,3 +50,18 @@ exports.saveToRegister = function (req, res) {
         }
     })
 };
+
+exports.addList = function (req, res) {
+    const data = {
+        c_id: req.body.c_id,
+        season: req.body.season,
+        style: req.body.style,
+        sort: req.body.sort,
+        image: req.body.image,
+        colors: req.body.colors,
+        matches: req.body.matches
+    };
+    db.add(data,function (result) {
+        res.json(result).end();
+    })
+}

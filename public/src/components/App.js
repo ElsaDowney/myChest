@@ -5,12 +5,11 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Nav />
+                <Nav/>
               {this.props.children}
             </div>
         )
     }
 }
-
 
 export default App;

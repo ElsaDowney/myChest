@@ -1,9 +1,13 @@
 var React = require('react');
 
+var Link = require('react-router').Link;
+
+import App from './App'
+
 var LoginAndRegister = React.createClass({
     getInitialState: function () {
         return {
-            fixture: true
+            fixture: true,
         }
     },
     toLogin: function () {
@@ -14,7 +18,7 @@ var LoginAndRegister = React.createClass({
     },
     render: function () {
         return (
-            <div className="panel-heading" id="center">
+            <div className="panel-heading " id="center" >
                 <div className="row">
                     <div className="col-md-6 " >
                         <a onClick={this.toLogin}  className="title">Login</a>
@@ -53,7 +57,9 @@ var Login = React.createClass({
                     if (data === '0') {
                         alert("用户不存在,请先注册");
                     } else {
-                        alert("登陆成功");
+                         alert("登陆成功");
+                        // <link to="/">title</link>
+                        location.href='/'
                     }
                 }
             },
@@ -86,6 +92,7 @@ var Login = React.createClass({
                 <div  className="buttonCenter">
                     <button type="submit" onClick={this.login}
                             className="btn btn-default ">登陆</button>
+                    <App />
                 </div>
             </div>
         )
@@ -108,6 +115,7 @@ var Register = React.createClass({
                     if (status == 'success') {
                         if (data === '1') {
                             alert('注册成功');
+                            location.href='/'
                         }
                         else{
                             alert("该用户已存在,不能进行注册");
@@ -127,7 +135,7 @@ var Register = React.createClass({
     judgeUserName:function () {
         const username = $('#user').val();
         if(username.length<2){
-            $('.user').append('<div class="remark">'+"长度过短!请修改!"+'</div>');
+            $('.user').append('<div class="remark">'+"长度应不小于2位!请修改!"+'</div>');
         }else{
             $(".remark").remove();
         }
@@ -135,37 +143,28 @@ var Register = React.createClass({
     judgePassword:function () {
         const password = $('#password').val();
         if(password.length<6 || password.length>12){
-            $('.password').append('<div class="remark">'+"密码非法!请修改!"+'</div>');
+            $('.password').append('<div class="remark">'+"密码应为6到12位!请修改!"+'</div>');
         }else{
             $(".remark").remove();
         }
 
     },
-    judgeRepeatPassword:function () {
-        const password = $('#repeatPassword').val();
-        if(password.length<6 || password.length>12){
-            $('.repeatPassword').append('<div class="remark">'+"密码非法!请修改!"+'</div>');
-        }else{
-            $(".remark").remove();
-        }
-
-    },
-
     render: function () {
         return (
             <div>
-                <div className="user" >
-                    用户名: <input type="text" className="form-control"
+                <div className="user">
+                    用户名:
+                    <input type="text" className="form-control"
                                 onChange={this.judgeUserName}
                                 id="user" placeholder="请输入用户名"/>
                 </div>
 
-                <div  className="password" >
+                <div  className="password form-group" >
                     密码: <input type="password" className="form-control"
                                onClick={this.judgePassword}
                                id="password" placeholder="请输入密码"/>
                 </div>
-                <div  className="repeatPassword">
+                <div  className="repeatPassword form-group">
                     再次确认密码: <input type="password" className="form-control"
                                    id="repeatPassword"
                                    onClick={this.judgeRepeatPassword}
