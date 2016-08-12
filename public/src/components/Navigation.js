@@ -14,12 +14,12 @@ class Nav extends Component {
                             </div>
                             <div classID="navbar" className="navbar-collapse collapse">
                                 <ul className="nav navbar-nav">
-                                    <li className="active"><a href="#">首页</a></li>
-                                    <li><a href="#about">我的衣柜</a></li>
-                                    <li><a href="#contact">我的搭配</a></li>
+                                    <li className="active"><Link to='/'>首页</Link></li>
+                                    <li><Link to='ClothesList'>我的衣柜</Link></li>
+                                    <li><Link to='AllMatches'>我的搭配</Link></li>
                                 </ul>
                                 <ul className="nav navbar-nav navbar-right">
-                                    <li><Link to='Login'>登陆/注册</Link></li>
+                                    <li><Link to='LoginAndRegister'>登陆/注册</Link></li>
                                 </ul>
                             </div>
                         </div>

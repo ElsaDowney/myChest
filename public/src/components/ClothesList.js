@@ -1,17 +1,5 @@
 import React, {Component} from "react";
 
-// var Link = require('react-router').Link;
-
-class Chest extends Component {
-  render(){
-    return (
-      <div>
-        <ClothesList />
-      </div>
-    )
-  }
-}
-
 class ClothesList extends Component{
   constructor(){
     super();
@@ -102,4 +90,4 @@ class ClothesList extends Component{
   }
 }
 
-export default Chest;
+export default ClothesList;
