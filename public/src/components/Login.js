@@ -1,3 +1,10 @@
-/**
- * Created by douqing on 16-8-11.
- */
+import React, {Component} from "react";
+
+class Login extends Component{
+    render(){
+        return(
+            <div>登陆</div>
+        )
+    }
+}
+module.exports = Login;
