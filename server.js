@@ -18,9 +18,6 @@ app.use(bodyParser.json());
 
 app.use('/',require('./routes/index'));
 
-// app.get('/', (res, req)=> {
-//   req.send('abc');
-// });
 
 app.listen(3000, function() {
   console.log("server started at http://localhost:3000");
