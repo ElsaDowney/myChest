@@ -4,7 +4,7 @@ import LoginAndRegister from "./components/login-register";
 
 render(
   <LoginAndRegister/>,
-  document.getElementById("app")
+  document.getElementById("login")
 );
 
 
