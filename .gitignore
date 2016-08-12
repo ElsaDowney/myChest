@@ -187,5 +187,5 @@ crashlytics-build.properties
 fabric.properties
 
 .idea
-public/dist/
+/public/dist/
 

@@ -5203,6 +5203,8 @@ webpackJsonp([1],[
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+	var _reactRouter = __webpack_require__(82);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5237,8 +5239,12 @@ webpackJsonp([1],[
 	    };
 	}
 
+<<<<<<< 25400c0be22ee92180b9ecb3b0dfe1702d81028e
 	var Nav = __webpack_require__(174);
 	var Home = __webpack_require__(172);
+=======
+	// var Link = require('react-router').Link;
+>>>>>>> add dist
 
 	var App = _wrapComponent('App')(function (_Component) {
 	    _inherits(App, _Component);
@@ -5255,8 +5261,20 @@ webpackJsonp([1],[
 	            return _react3.default.createElement(
 	                'div',
 	                null,
+<<<<<<< 25400c0be22ee92180b9ecb3b0dfe1702d81028e
 	                _react3.default.createElement(Nav, null),
 	                _react3.default.createElement(Home, null)
+=======
+	                "ClothesList",
+	                _react3.default.createElement("br", null),
+	                _react3.default.createElement("br", null),
+	                _react3.default.createElement("br", null),
+	                _react3.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: "AddList" },
+	                    "添加"
+	                )
+>>>>>>> add dist
 	            );
 	        }
 	    }]);
