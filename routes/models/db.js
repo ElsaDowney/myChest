@@ -29,16 +29,15 @@ exports.findAll = function (callback) {
 
     MongoClient.connect(url, function (err, db) {
         findClothes(db, function (result) {
-            db.close();
             callback(result);
-        });
+        }
+        db.close();
     });
 
     const findClothes = function (db, callback) {
 
         const collection = db.collection('clothes');
         collection.find({}).toArray(function (err, docs) {
-            console.log(docs);
             callback(docs);
         });
     };
@@ -61,7 +60,6 @@ exports.allMatches=function(){
 
     const collection=db.collection('matches');
     collection.find({}).toArray(function(err,docs){
-      console.log(docs);
       callback(docs);
     });
   };

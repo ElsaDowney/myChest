@@ -11,6 +11,8 @@ exports.findAll = function (req, res) {
 
 exports.save = function(req,res){
   db.save(req.body,function(result){
+      console.log(req.body);
+      
     res.json(result).end();
   });
 }
