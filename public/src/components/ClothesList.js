@@ -1,15 +1,5 @@
 import React, {Component} from "react";
 
-class Chest extends Component {
-  render(){
-    return (
-      <div>
-        <ClothesList />
-      </div>
-    )
-  }
-}
-
 class ClothesList extends Component{
   constructor(){
     super();
@@ -24,7 +14,6 @@ class ClothesList extends Component{
       {_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1"},
       {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
       {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
-      // {_id:4,season:"summer",color:"black",sort:"fishion",type:"coat",image:"4"}
   ];
     $.ajax({
       type:"POST",
@@ -38,7 +27,6 @@ class ClothesList extends Component{
       this.setState({allColthes:data});
     }.bind(this)
   );
-    // this.setState({allColthes:array});
   }
 
   findClothesType(type,clothes){
@@ -102,4 +90,4 @@ class ClothesList extends Component{
   }
 }
 
-export default Chest;
+export default ClothesList;

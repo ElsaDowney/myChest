@@ -1,6 +1,6 @@
 
-
-const AllMaches = React.createClass({
+import React from "react";
+const AllMatches = React.createClass({
 
     componentDidMount: function () {
         $.get('/allMatches').then(data => {
@@ -53,6 +53,4 @@ const AllMaches = React.createClass({
         )
     }
 });
-
-ReactDOM.render(<AllMaches name="TODOS">nice to MEET you.</AllMaches>,
-    document.getElementById('content'));
+module.exports = AllMatches;
