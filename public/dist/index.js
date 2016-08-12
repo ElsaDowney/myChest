@@ -1487,23 +1487,20 @@ webpackJsonp([1],[
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _components = {
-	  Chest: {
-	    displayName: "Chest"
-	  },
-	  ClothesList: {
-	    displayName: "ClothesList"
+	  App: {
+	    displayName: "App"
 	  }
 	};
 
-	var _homeZouziqinYidadaReactExpressWebpackBaseNode_modulesReactTransformHmr104LibIndexJs2 = (0, _index6.default)({
-	  filename: "/home/zouziqin/yidada/react-express/webpack-base/public/src/components/clothesList.js",
+	var _homeDouqingMyChestNode_modulesReactTransformHmrLibIndexJs2 = (0, _index6.default)({
+	  filename: "/home/douqing/myChest/public/src/components/App.js",
 	  components: _components,
 	  locals: [module],
 	  imports: [_react3.default]
 	});
 
-	var _homeZouziqinYidadaReactExpressWebpackBaseNode_modulesReactTransformCatchErrors102LibIndexJs2 = (0, _index4.default)({
-	  filename: "/home/zouziqin/yidada/react-express/webpack-base/public/src/components/clothesList.js",
+	var _homeDouqingMyChestNode_modulesReactTransformCatchErrorsLibIndexJs2 = (0, _index4.default)({
+	  filename: "/home/douqing/myChest/public/src/components/App.js",
 	  components: _components,
 	  locals: [],
 	  imports: [_react3.default, _index2.default]
@@ -1511,187 +1508,325 @@ webpackJsonp([1],[
 
 	function _wrapComponent(id) {
 	  return function (Component) {
-	    return _homeZouziqinYidadaReactExpressWebpackBaseNode_modulesReactTransformHmr104LibIndexJs2(_homeZouziqinYidadaReactExpressWebpackBaseNode_modulesReactTransformCatchErrors102LibIndexJs2(Component, id), id);
+	    return _homeDouqingMyChestNode_modulesReactTransformHmrLibIndexJs2(_homeDouqingMyChestNode_modulesReactTransformCatchErrorsLibIndexJs2(Component, id), id);
 	  };
 	}
 
-	var Chest = _wrapComponent("Chest")(function (_Component) {
-	  _inherits(Chest, _Component);
+	var App = _wrapComponent("App")(function (_Component) {
+	  _inherits(App, _Component);
 
-	  function Chest() {
-	    _classCallCheck(this, Chest);
+	  function App() {
+	    _classCallCheck(this, App);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Chest).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
 	  }
 
-	  _createClass(Chest, [{
+	  _createClass(App, [{
 	    key: "render",
 	    value: function render() {
 	      return _react3.default.createElement(
 	        "div",
 	        null,
-	        _react3.default.createElement(ClothesList, null)
-	      );
-	    }
-	  }]);
-
-	  return Chest;
-	}(_react2.Component));
-
-	var ClothesList = _wrapComponent("ClothesList")(function (_Component2) {
-	  _inherits(ClothesList, _Component2);
-
-	  function ClothesList() {
-	    _classCallCheck(this, ClothesList);
-
-	    var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(ClothesList).call(this));
-
-	    _this2.state = {
-	      allColthes: []
-	    };
-	    return _this2;
-	  }
-
-	  _createClass(ClothesList, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
-	      var array = [{ _id: 0, season: "summer", color: "red", sort: "coat", style: "fashion", image: "0" }, { _id: 1, season: "summer", color: "yellow", sort: "coat", style: "fashion", image: "1" }, { _id: 2, season: "summer", color: "blue", sort: "pants", style: "simple", image: "2" }, { _id: 3, season: "summer", color: "white", sort: "pants", style: "simple", image: "3" }
-	      // {_id:4,season:"summer",color:"black",sort:"fishion",type:"coat",image:"4"}
-	      ];
-	      $.ajax({
-	        type: "POST",
-	        url: "/clothes",
-	        contentType: "application/json",
-	        data: JSON.stringify(array),
-	        success: function success(data) {}
-	      });
-
-	      $.get("/clothes", function (data) {
-	        this.setState({ allColthes: data });
-	      }.bind(this));
-	      // this.setState({allColthes:array});
-	    }
-	  }, {
-	    key: "findClothesType",
-	    value: function findClothesType(type, clothes) {
-	      return clothes.find(function (item) {
-	        return item.sort === type;
-	      });
-	    }
-	  }, {
-	    key: "remove",
-	    value: function remove(section) {
-	      var id = section._id;
-	      var allColthes = this.state.allColthes;
-	      var index = allColthes.indexOf(allColthes.find(function (item) {
-	        return item._id === id;
-	      }));
-	      allColthes.splice(index, 1);
-	      this.setState({ allColthes: allColthes });
-	    }
-	  }, {
-	    key: "getAllSectionWithTig",
-	    value: function getAllSectionWithTig(clothes) {
-	      var _this3 = this;
-
-	      var sectionClothes = clothes.allSections.map(function (section) {
-	        var imgUrl = "../../images/image" + section.image + ".png";
-	        return _react3.default.createElement(
+	        _react3.default.createElement(
 	          "div",
-	          { className: "imgSize" },
-	          _react3.default.createElement("img", { src: imgUrl }),
-	          _react3.default.createElement("span", { className: "glyphicon glyphicon-trash delete",
-	            onClick: _this3.remove.bind(_this3, section) })
-	        );
-	      });
-	      return _react3.default.createElement(
-	        "div",
-	        null,
-	        _react3.default.createElement(
-	          "h4",
-	          null,
-	          clothes.sort
-	        ),
-	        _react3.default.createElement("hr", null),
-	        sectionClothes,
-	        _react3.default.createElement(
-	          "button",
-	          null,
-	          _react3.default.createElement("span", { className: "glyphicon glyphicon-plus" })
-	        )
-	      );
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      var _this4 = this;
-
-	      var allColthes = this.state.allColthes;
-	      var clothesWithClass = [];
-	      var _iteratorNormalCompletion = true;
-	      var _didIteratorError = false;
-	      var _iteratorError = undefined;
-
-	      try {
-	        for (var _iterator = allColthes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	          var _clothes = _step.value;
-
-	          var element = this.findClothesType(_clothes.sort, clothesWithClass);
-	          if (element) {
-	            element.allSections.push(_clothes);
-	          } else {
-	            var clothesObj = {};
-	            var arr = [];
-	            arr.push(_clothes);
-	            clothesObj.sort = _clothes.sort;
-	            clothesObj.allSections = arr;
-	            clothesWithClass.push(clothesObj);
-	          }
-	        }
-	      } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
-	      } finally {
-	        try {
-	          if (!_iteratorNormalCompletion && _iterator.return) {
-	            _iterator.return();
-	          }
-	        } finally {
-	          if (_didIteratorError) {
-	            throw _iteratorError;
-	          }
-	        }
-	      }
-
-	      var clothes = clothesWithClass.map(function (clothes) {
-	        return _this4.getAllSectionWithTig(clothes);
-	      });
-	      return _react3.default.createElement(
-	        "div",
-	        { className: "wrap-colthes" },
-	        clothes,
-	        _react3.default.createElement(
-	          "button",
-	          { className: "btn-float" },
-	          "搭配"
-	        ),
-	        _react3.default.createElement(
-	          "p",
-	          { className: "btn-foot" },
+	          { className: "navbar-wrapper" },
 	          _react3.default.createElement(
-	            "button",
-	            null,
-	            "点击添加类型"
+	            "div",
+	            { className: "container" },
+	            _react3.default.createElement(
+	              "nav",
+	              { className: "navbar navbar-inverse navbar-static-top " },
+	              _react3.default.createElement(
+	                "div",
+	                { className: "container" },
+	                _react3.default.createElement(
+	                  "div",
+	                  { className: "navbar-header" },
+	                  _react3.default.createElement(
+	                    "a",
+	                    { className: "navbar-brand", href: "#" },
+	                    "衣搭搭"
+	                  )
+	                ),
+	                _react3.default.createElement(
+	                  "div",
+	                  { classID: "navbar", className: "navbar-collapse collapse" },
+	                  _react3.default.createElement(
+	                    "ul",
+	                    { className: "nav navbar-nav" },
+	                    _react3.default.createElement(
+	                      "li",
+	                      { className: "active" },
+	                      _react3.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "首页"
+	                      )
+	                    ),
+	                    _react3.default.createElement(
+	                      "li",
+	                      null,
+	                      _react3.default.createElement(
+	                        "a",
+	                        { href: "#about" },
+	                        "我的衣柜"
+	                      )
+	                    ),
+	                    _react3.default.createElement(
+	                      "li",
+	                      null,
+	                      _react3.default.createElement(
+	                        "a",
+	                        { href: "#contact" },
+	                        "我的搭配"
+	                      )
+	                    )
+	                  ),
+	                  _react3.default.createElement(
+	                    "ul",
+	                    { className: "nav navbar-nav navbar-right" },
+	                    _react3.default.createElement(
+	                      "li",
+	                      null,
+	                      _react3.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "登陆/注册"
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react3.default.createElement(
+	          "div",
+	          { classID: "myCarousel", className: "carousel slide", "data-ride": "carousel" },
+	          _react3.default.createElement(
+	            "ol",
+	            { className: "carousel-indicators" },
+	            _react3.default.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "0", className: "active" }),
+	            _react3.default.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "1" }),
+	            _react3.default.createElement("li", { "data-target": "#myCarousel", "data-slide-to": "2" })
+	          ),
+	          _react3.default.createElement(
+	            "div",
+	            { className: "carousel-inner", role: "listbox" },
+	            _react3.default.createElement(
+	              "div",
+	              { className: "item active" },
+	              _react3.default.createElement("img", { className: "first-slide", src: "images/ydd3.jpg", alt: "First slide" }),
+	              _react3.default.createElement(
+	                "div",
+	                { className: "container" },
+	                _react3.default.createElement(
+	                  "div",
+	                  { className: "carousel-caption" },
+	                  _react3.default.createElement(
+	                    "h1",
+	                    null,
+	                    " Beautiful You"
+	                  ),
+	                  _react3.default.createElement("p", null),
+	                  _react3.default.createElement(
+	                    "p",
+	                    null,
+	                    _react3.default.createElement(
+	                      "a",
+	                      { className: "btn btn-lg btn-primary", href: "#", role: "button" },
+	                      "Sign up today"
+	                    )
+	                  )
+	                )
+	              )
+	            ),
+	            _react3.default.createElement(
+	              "div",
+	              { className: "item" },
+	              _react3.default.createElement("img", { className: "second-slide", src: "images/ydd2.jpg", alt: "Second slide" }),
+	              _react3.default.createElement(
+	                "div",
+	                { className: "container" },
+	                _react3.default.createElement(
+	                  "div",
+	                  { className: "carousel-caption" },
+	                  _react3.default.createElement(
+	                    "h1",
+	                    null,
+	                    "Beautiful You"
+	                  ),
+	                  _react3.default.createElement(
+	                    "p",
+	                    null,
+	                    "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec classIDelit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                  ),
+	                  _react3.default.createElement(
+	                    "p",
+	                    null,
+	                    _react3.default.createElement(
+	                      "a",
+	                      { className: "btn btn-lg btn-primary", href: "#", role: "button" },
+	                      "Learn more"
+	                    )
+	                  )
+	                )
+	              )
+	            ),
+	            _react3.default.createElement(
+	              "div",
+	              { className: "item" },
+	              _react3.default.createElement("img", { className: "third-slide", src: "images/ydd1.jpg", alt: "Third slide" }),
+	              _react3.default.createElement(
+	                "div",
+	                { className: "container" },
+	                _react3.default.createElement(
+	                  "div",
+	                  { className: "carousel-caption" },
+	                  _react3.default.createElement(
+	                    "h1",
+	                    null,
+	                    "Beautiful You"
+	                  ),
+	                  _react3.default.createElement(
+	                    "p",
+	                    null,
+	                    "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit."
+	                  ),
+	                  _react3.default.createElement(
+	                    "p",
+	                    null,
+	                    _react3.default.createElement(
+	                      "a",
+	                      { className: "btn btn-lg btn-primary", href: "#", role: "button" },
+	                      "Browse gallery"
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          ),
+	          _react3.default.createElement(
+	            "a",
+	            { className: "left carousel-control", href: "#myCarousel", role: "button", "data-slide": "prev" },
+	            _react3.default.createElement("span", { className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true" }),
+	            _react3.default.createElement(
+	              "span",
+	              { className: "sr-only" },
+	              "Previous"
+	            )
+	          ),
+	          _react3.default.createElement(
+	            "a",
+	            { className: "right carousel-control", href: "#myCarousel", role: "button", "data-slide": "next" },
+	            _react3.default.createElement("span", { className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true" }),
+	            _react3.default.createElement(
+	              "span",
+	              { className: "sr-only" },
+	              "Next"
+	            )
+	          )
+	        ),
+	        _react3.default.createElement("hr", { className: "featurette-divider" }),
+	        _react3.default.createElement(
+	          "div",
+	          { className: "row featurette" },
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-7" },
+	            _react3.default.createElement(
+	              "h2",
+	              { className: "featurette-heading" },
+	              "First featurette heading. ",
+	              _react3.default.createElement(
+	                "span",
+	                { className: "text-muted" },
+	                "It'll blow your mind."
+	              )
+	            ),
+	            _react3.default.createElement(
+	              "p",
+	              { className: "lead" },
+	              "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
+	            )
+	          ),
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-5" },
+	            _react3.default.createElement("img", { className: "featurette-image img-responsive center-block", src: "images/ydd1.jpg",
+	              alt: "Generic placeholder image" })
+	          )
+	        ),
+	        _react3.default.createElement("hr", { className: "featurette-divider" }),
+	        _react3.default.createElement(
+	          "div",
+	          { className: "row featurette" },
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-7 col-md-push-5" },
+	            _react3.default.createElement(
+	              "h2",
+	              { className: "featurette-heading" },
+	              "Oh yeah, it's that good. ",
+	              _react3.default.createElement(
+	                "span",
+	                {
+	                  className: "text-muted" },
+	                "See for yourself."
+	              )
+	            ),
+	            _react3.default.createElement(
+	              "p",
+	              { className: "lead" },
+	              "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
+	            )
+	          ),
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-5 col-md-pull-7" },
+	            _react3.default.createElement("img", { className: "featurette-image img-responsive center-block", src: "images/ydd4.jpg",
+	              alt: "Generic placeholder image" })
+	          )
+	        ),
+	        _react3.default.createElement("hr", { className: "featurette-divider" }),
+	        _react3.default.createElement(
+	          "div",
+	          { className: "row featurette" },
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-7" },
+	            _react3.default.createElement(
+	              "h2",
+	              { className: "featurette-heading" },
+	              "And lastly, this one. ",
+	              _react3.default.createElement(
+	                "span",
+	                {
+	                  className: "text-muted" },
+	                "Checkmate."
+	              )
+	            ),
+	            _react3.default.createElement(
+	              "p",
+	              { className: "lead" },
+	              "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo."
+	            )
+	          ),
+	          _react3.default.createElement(
+	            "div",
+	            { className: "col-md-5" },
+	            _react3.default.createElement("img", { className: "featurette-image img-responsive center-block",
+	              src: "images/ydd6.jpg", alt: "Generic placeholder image" })
 	          )
 	        )
 	      );
 	    }
 	  }]);
 
-	  return ClothesList;
+	  return App;
 	}(_react2.Component));
 
-	exports.default = Chest;
+	exports.default = App;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(82)(module)))
 
 /***/ },
@@ -1706,13 +1841,13 @@ webpackJsonp([1],[
 
 	var _reactDom = __webpack_require__(59);
 
-	var _clothesList = __webpack_require__(137);
+	var _App = __webpack_require__(137);
 
-	var _clothesList2 = _interopRequireDefault(_clothesList);
+	var _App2 = _interopRequireDefault(_App);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _reactDom.render)(_react2.default.createElement(_clothesList2.default, null), document.getElementById("app"));
+	(0, _reactDom.render)(_react2.default.createElement(_App2.default, null), document.getElementById("app"));
 
 /***/ },
 /* 139 */
