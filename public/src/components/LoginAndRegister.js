@@ -1,5 +1,8 @@
 var React = require('react');
+
 var Link = require('react-router').Link;
+
+import App from './App'
 
 var LoginAndRegister = React.createClass({
     getInitialState: function () {
@@ -15,7 +18,7 @@ var LoginAndRegister = React.createClass({
     },
     render: function () {
         return (
-            <div className="panel-heading" id="center">
+            <div className="panel-heading " id="center" >
                 <div className="row">
                     <div className="col-md-6 " >
                         <a onClick={this.toLogin}  className="title">Login</a>
@@ -89,6 +92,7 @@ var Login = React.createClass({
                 <div  className="buttonCenter">
                     <button type="submit" onClick={this.login}
                             className="btn btn-default ">登陆</button>
+                    <App />
                 </div>
             </div>
         )

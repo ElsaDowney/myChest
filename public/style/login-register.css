@@ -1,10 +1,11 @@
+
 #center {
     width: 450px;
     margin-top: 140px;
     margin-left: auto;
     margin-right: auto;
     border: 2px solid #e6ece4;
-    border-radius:20px;
+    border-radius: 20px;
     /*opacity:0.5*/
     /*background: #e8fffd;*/
 }
@@ -14,20 +15,20 @@
     font-size: 20px
 }
 
-.buttonCenter{
+.buttonCenter {
     width: 60px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.login{
+.login {
     background-color: #bdffb8;
 }
 
-.register{
+.register {
     background-color: #ebead6;
 }
 
-.remark{
+.remark {
     color: red;
 }
