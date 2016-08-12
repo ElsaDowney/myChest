@@ -13,6 +13,8 @@ router.post('/register',actions.saveToRegister);
 
 router.post('/allMatches',actions.allMatches);
 
+router.post('/addList',actions.addList);
+
 //......
 
 module.exports = router;
