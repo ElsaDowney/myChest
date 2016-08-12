@@ -4,7 +4,8 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
+
     "start": "babel-node server.js",
     "webpack": "webpack"
   },
@@ -15,10 +16,12 @@
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "react-router": "^2.6.1"
+    "mocha": "^3.0.2",
     "mongodb": "^2.2.5",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
-    "react-router": "^2.6.1"
+    "supertest": "^2.0.0"
   },
   "devDependencies": {
     "babel-loader": "^6.2.4",
