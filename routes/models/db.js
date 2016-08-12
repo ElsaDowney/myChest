@@ -4,25 +4,25 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/myChest';
 
 //下面代码只是例子,对自己的需要自行写代码
-exports.getAll = function(callback){
-    MongoClient.connect(url,function(err,db){
-      const collection = db.collection('clothes');
-      collection.find({}).toArray(function(err,docs){
-        callback(docs);
-      })
-      db.close();
+exports.getAll = function (callback) {
+    MongoClient.connect(url, function (err, db) {
+        const collection = db.collection('clothes');
+        collection.find({}).toArray(function (err, docs) {
+            callback(docs);
+        })
+        db.close();
     })
 }
 
 
-exports.save = function(data, callback){
-  MongoClient.connect(url,function(err,db){
-    const collection = db.collection('clothes');
-    collection.insert(data,function(err,result){
-      callback(result);
+exports.save = function (data, callback) {
+    MongoClient.connect(url, function (err, db) {
+        const collection = db.collection('clothes');
+        collection.insert(data, function (err, result) {
+            callback(result);
+        })
+        db.close();
     })
-    db.close();
-  })
 }
 
 exports.findAll = function (callback) {
@@ -48,19 +48,34 @@ exports.save = function () {
     //.......
 };
 
+<<<<<<< HEAD
 exports.AllMatches=function(callback){
 
     MongoClient.connect(url, function (err, db) {
         AllMatches(db, function (result) {
+=======
+exports.allMatches = function () {
+
+    MongoClient.connect(url, function (err, db) {
+        allMatches(db, function (result) {
+>>>>>>> 25725479f2f12f86ae3f06e329b2c4e3bb29ba1d
             db.close();
             callback(result);
         });
     });
 
+<<<<<<< HEAD
     const AllMatches=function(db,callback){
 
         const collection=db.collection('matches');
         collection.find({}).toArray(function(err,docs){
+=======
+    const allMatches = function (db, callback) {
+
+        const collection = db.collection('matches');
+        collection.find({}).toArray(function (err, docs) {
+            console.log(docs);
+>>>>>>> 25725479f2f12f86ae3f06e329b2c4e3bb29ba1d
             callback(docs);
         });
     };
@@ -141,3 +156,28 @@ exports.register = function (data, callback) {
     });
 
 };
+
+exports.add = function (data, callback) {
+    var insertData = function (db, callback) {
+        const collection = db.collection('list');
+
+        collection.insert(data, function (err, result) {
+            if (err) {
+                console.log('Error:' + err);
+                return;
+            }
+            callback(result);
+        });
+    };
+
+    MongoClient.connect(url, function (err, db) {
+
+        insertData(db, function (result) {
+            console.log(result);
+            callback(result);
+
+        });
+    });
+
+
+}
