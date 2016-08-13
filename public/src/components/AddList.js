@@ -46,7 +46,7 @@ const AddList = React.createClass({
                 "style": this.state.style,
                 "sort": this.state.sort,
                 "image": this.state.image,
-                "colors":this.state.image,
+                "colors":this.state.colors,
                 "matches":this.state.matches
             }),
 
@@ -75,11 +75,15 @@ const AddList = React.createClass({
 });
 
 const Image = React.createClass({
+    addImage:function (e) {
+        var imageItem = e.target.value;
+        console.log(image);
+    },
 
     render: function () {
         return (
             <div>
-                <input type="file" id="col-image" name="col-image"/>
+                <input type="file" id="clo-image" onChange={this.addImage}/>
             </div>
         )
     }
