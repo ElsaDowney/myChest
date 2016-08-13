@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
 
-    "start": "babel-node server.js",
+    "start": "node program.js",
     "webpack": "webpack"
   },
   "dependencies": {
