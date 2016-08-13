@@ -5,16 +5,11 @@ class ClothesList extends Component{
     super();
     this.state={
       allColthes:[]
-    }
+    };
   }
 
   componentDidMount(){
-  //   const array = [
-  //     {_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0"},
-  //     {_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1"},
-  //     {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
-  //     {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
-  // ];
+
   const array = [
     {_id:0,
       userName:"xiaopangzhu",
@@ -43,7 +38,7 @@ class ClothesList extends Component{
       contentType:"application/json",
       data:JSON.stringify(array),
       success:function(data){}
-    })
+    });
 
     const _id = 0;
     $.get("/clothes/0",function(data) {
@@ -57,11 +52,21 @@ class ClothesList extends Component{
    }
 
   remove(section){
-    const id = section._id;
+    const c_id = section.c_id;
     const allColthes = this.state.allColthes;
-    const index = allColthes.indexOf(allColthes.find(item => item._id === id));
+    const index = allColthes.indexOf(allColthes.find(item => item.c_id === c_id));
     allColthes.splice(index,1);
     this.setState({allColthes});
+
+    const _id = 0;
+    $.ajax({
+      type:"DELETE",
+      url:"/clothes",
+      contentType:"application/json",
+      data:JSON.stringify({_id,c_id}),
+      success:function(data){}
+    });
+
   }
                                         　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
   setStyle(id){
@@ -78,7 +83,7 @@ class ClothesList extends Component{
           <span className="delete"
                 onClick={this.remove.bind(this,section)}>X</span>
               <input type="checkbox" name="selected" className="input-select"
-                    value={section._id}/>
+                    value={section.c_id}/>
         </div>
       )
     });
