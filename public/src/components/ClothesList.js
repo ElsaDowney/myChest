@@ -15,6 +15,28 @@ class ClothesList extends Component{
       {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
       {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
   ];
+  // const array = [
+  //   {u_id:0,
+  //     userName:"xiaopangzhu",
+  //     password:"123456",
+  //     clothes_list:[
+  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+  //     ]
+  //   },
+  //   {u_id:2,
+  //     userName:"xiaopangzhu",
+  //     password:"123456",
+  //     clothes:[
+  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+  //     ]
+  //   }
+  // ];
     $.ajax({
       type:"POST",
       url:"/clothes",
@@ -23,7 +45,8 @@ class ClothesList extends Component{
       success:function(data){}
     })
 
-    $.get("/clothes",function(data) {
+    const u_id = 0;
+    $.get(`/clothes`,function(data) {
       this.setState({allColthes:data});
     }.bind(this)
   );
@@ -40,15 +63,22 @@ class ClothesList extends Component{
     allColthes.splice(index,1);
     this.setState({allColthes});
   }
+                                        　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+  setStyle(id){
+    $("#id").css.display = "inline";
+  }
 
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
       const imgUrl = `../../images/image${section.image}.png`;
       return (
         <div className="imgSize">
-          <img src={imgUrl}/>
-          <span className="glyphicon glyphicon-trash delete"
-                onClick={this.remove.bind(this,section)}></span>
+          <img src={imgUrl} id="show"
+              onfocus={this.setStyle.bind(this.id)}/>
+          <span className="delete"
+                onClick={this.remove.bind(this,section)}>X</span>
+              <input type="checkbox" name="selected" className="input-select"
+                    value={section._id}/>
         </div>
       )
     });
@@ -61,6 +91,18 @@ class ClothesList extends Component{
       </div>
     )
   }
+
+  matchClothes(){
+    $('.input-select').css("display","inline");
+  }
+
+  confirmMatch(){
+    const match = [];
+    $("input[name=selected]:checked").each(function(){
+      match.push($(this).val())
+    });
+  }
+
   render(){
     const allColthes = this.state.allColthes;
     const clothesWithClass = [];
@@ -77,13 +119,15 @@ class ClothesList extends Component{
           clothesWithClass.push(clothesObj);
         }
       }
+      // console.log(clothesWithClass);
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
       })
       return (
         <div className="wrap-colthes">
           {clothes}
-          <button className="btn-float">搭配</button>
+          <button className="" onClick={this.matchClothes}>搭配</button>
+          <button className="btn-float" onClick={this.confirmMatch}>确认搭配</button>
           <p className="btn-foot"><button>点击添加类型</button></p>
         </div>
       )

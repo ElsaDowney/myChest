@@ -1,19 +1,20 @@
 const express = require('express');
-const actions = require('./actions/userAction');
+const userAction = require('./actions/userAction');
+const clothesAction = require('./actions/clothesAction');
+const matchAction = require('./actions/matchAction');
+
 const app = new express();
 const router = express.Router();
 
-router.get('/clothes',actions.findAll);
-router.post('/clothes',actions.save);
+router.get('/clothes',clothesAction.findAll);
+router.post('/clothes',clothesAction.save);
 
 
 
-router.post('/login',actions.selectOneToLogin);
-router.post('/register',actions.saveToRegister);
+router.post('/login',userAction.selectOneToLogin);
+router.post('/register',userAction.saveToRegister);
 
-router.get('/allMatches',actions.AllMatches);
-
-router.post('/addList',actions.addList);
+router.post('/allMatches',matchAction.AllMatches);
 
 //......
 
