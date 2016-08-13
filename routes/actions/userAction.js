@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-const db = require('../models/db');
 const express = require('express');
 var router = express.Router();
 
@@ -23,11 +21,9 @@ exports.AllMatches = function(req,res){
 
     });
 };
-=======
 const db = require('../models/user');
 // const express = require('express');
 // var router = express.Router();
->>>>>>> ff2f1fe50fb56ef4b3b5610e15ba34de2b90e21d
 
 exports.selectOneToLogin = function (req, res) {
     db.selectOne({userName: req.body.name}, function (result) {

@@ -9,13 +9,8 @@ class ClothesList extends Component{
   }
 
   componentDidMount(){
-    const array = [
-      {_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0"},
-      {_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1"},
-      {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
-      {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
-  ];
-  // const array = [
+
+    // const array = [
   //   {u_id:0,
   //     userName:"xiaopangzhu",
   //     password:"123456",
@@ -43,7 +38,7 @@ class ClothesList extends Component{
       contentType:"application/json",
       data:JSON.stringify(array),
       success:function(data){}
-    })
+    });
 
     const u_id = 0;
     $.get(`/clothes`,function(data) {
@@ -122,7 +117,7 @@ class ClothesList extends Component{
       // console.log(clothesWithClass);
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
-      })
+      });
       return (
         <div className="wrap-colthes">
           {clothes}

@@ -10,7 +10,6 @@ router.get('/clothes',clothesAction.findAll);
 router.post('/clothes',clothesAction.save);
 
 
-
 router.post('/login',userAction.selectOneToLogin);
 router.post('/register',userAction.saveToRegister);
 

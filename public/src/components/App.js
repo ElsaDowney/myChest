@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 const Nav = require('./Navigation');
 class App extends Component {
-   
+
     render() {
         return (
             <div>
                 <Nav/>
-              {this.props.children}
+                {this.props.children}
             </div>
         )
     }
