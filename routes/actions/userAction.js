@@ -1,26 +1,6 @@
-const db = require('../models/db');
-const express = require('express');
-var router = express.Router();
-
-//以下代码只是例子,根据自己的需要自行补充代码
-exports.findAll = function (req, res) {
-    db.findAll(function (result) {
-        res.json(result).end();
-    });
-};
-
-exports.save = function(req,res){
-  db.save(req.body,function(result){
-    res.json(result).end();
-  });
-}
-
-exports.AllMatches = function(req,res){
-    db.AllMatches(function(result){
-        res.json(result).end();
-
-    });
-};
+const db = require('../models/user');
+// const express = require('express');
+// var router = express.Router();
 
 exports.selectOneToLogin = function (req, res) {
     db.selectOne({userName: req.body.name}, function (result) {
@@ -50,18 +30,3 @@ exports.saveToRegister = function (req, res) {
         }
     })
 };
-
-exports.addList = function (req, res) {
-    const data = {
-        c_id: req.body.c_id,
-        season: req.body.season,
-        style: req.body.style,
-        sort: req.body.sort,
-        image: req.body.image,
-        colors: req.body.colors,
-        matches: req.body.matches
-    };
-    db.add(data,function (result) {
-        res.json(result).end();
-    })
-}

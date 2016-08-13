@@ -15,6 +15,28 @@ class ClothesList extends Component{
       {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
       {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
   ];
+  // const array = [
+  //   {u_id:0,
+  //     userName:"xiaopangzhu",
+  //     password:"123456",
+  //     clothes_list:[
+  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+  //     ]
+  //   },
+  //   {u_id:2,
+  //     userName:"xiaopangzhu",
+  //     password:"123456",
+  //     clothes:[
+  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+  //     ]
+  //   }
+  // ];
     $.ajax({
       type:"POST",
       url:"/clothes",
@@ -23,7 +45,8 @@ class ClothesList extends Component{
       success:function(data){}
     })
 
-    $.get("/clothes",function(data) {
+    const u_id = 0;
+    $.get(`/clothes`,function(data) {
       this.setState({allColthes:data});
     }.bind(this)
   );
@@ -79,7 +102,7 @@ class ClothesList extends Component{
       match.push($(this).val())
     });
   }
-  
+
   render(){
     const allColthes = this.state.allColthes;
     const clothesWithClass = [];
