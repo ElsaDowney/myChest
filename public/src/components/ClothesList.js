@@ -102,10 +102,20 @@ class ClothesList extends Component{
   }
 
   confirmMatch(){
-    const match = [];
+    const matches = [];
     $("input[name=selected]:checked").each(function(){
       match.push($(this).val())
     });
+
+    const _id = 0;
+
+   $.ajax({
+     type:"POST",
+     url:"/clothes/matches",
+     contentType:"applicaton/json",
+     data:JSON.stringify({_id,matches}),
+     success:function(data){}
+   })
   }
 
   render(){
