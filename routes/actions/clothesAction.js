@@ -10,7 +10,7 @@ exports.save = function(req,res){
   clothes.save(req.body,function(result){
     res.json(result).end();
   });
-}
+};
 
 exports.addList = function (req, res) {
     const data = {
@@ -25,4 +25,4 @@ exports.addList = function (req, res) {
     clothes.add(data,function (result) {
         res.json(result).end();
     })
-}
+};
