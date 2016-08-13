@@ -187,5 +187,9 @@ crashlytics-build.properties
 fabric.properties
 
 .idea
+<<<<<<< HEAD
+/public/dist
+=======
 /public/dist/
 
+>>>>>>> 436a4d29302cf94bb49927a3b02aa2d906163316
