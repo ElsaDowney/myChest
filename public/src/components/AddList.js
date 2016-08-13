@@ -75,7 +75,7 @@ const AddList = React.createClass({
 const Image = React.createClass({
     addImage:function (e) {
         var imageItem = e.target.value;
-        console.log(image);
+        console.log(imageItem);
     },
 
     render: function () {

@@ -8,8 +8,13 @@ const router = express.Router();
 
 router.get('/clothes/:_id',clothesAction.getAllClothes);
 router.post('/clothes',clothesAction.save);
+
 router.delete('/clothes',clothesAction.deleteOneClothes);
 router.post('/clothes/matches',matchAction.updateMatches);
+
+router.post('/addList',clothesAction.addList)
+
+
 
 
 router.post('/login',userAction.selectOneToLogin);
