@@ -4,10 +4,16 @@ var Link = require('react-router').Link;
 
 import App from './App'
 
+const style = {
+    backgroundImage: 'url(' + '../../images/ydd21.jpg' + ')',
+    WebkitTransition: 'all',
+    msTransition: 'all'
+};
+
 var LoginAndRegister = React.createClass({
     getInitialState: function () {
         return {
-            fixture: true,
+            fixture: true
         }
     },
     toLogin: function () {
@@ -18,7 +24,8 @@ var LoginAndRegister = React.createClass({
     },
     render: function () {
         return (
-            <div className="panel-heading " id="center" >
+            
+            <div className="panel-heading container " id="center" style={style}>
                 <div className="row">
                     <div className="col-md-6 " >
                         <a onClick={this.toLogin}  className="title">Login</a>
