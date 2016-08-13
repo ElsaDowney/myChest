@@ -12,16 +12,15 @@ exports.findAll = function (req, res) {
 exports.save = function(req,res){
   db.save(req.body,function(result){
       console.log(req.body);
-      
     res.json(result).end();
   });
 }
 
-exports.allMatches = function (req,res) {
+exports.AllMatches = function(req,res){
+    db.AllMatches(function(result){
+        res.json(result).end();
 
-  db.allMatches(function(result){
-    res.json(result).end();
-  });
+    });
 };
 
 exports.selectOneToLogin = function (req, res) {
