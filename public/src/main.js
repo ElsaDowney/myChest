@@ -1,4 +1,4 @@
-import { Router, Route, hashHistory,IndexRoute } from 'react-router';
+import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import React from "react";
 import {render} from "react-dom";
 import App from "./components/App";
@@ -10,16 +10,18 @@ import LoginAndRegister from  './components/LoginAndRegister'
 
 
 render(
-    <Router  history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute  component={Home}/>
-            <Route path="Home" component={Home}/>
-            <Route path="LoginAndRegister" component={LoginAndRegister}/>
-            <Route path="AllMatches" component={AllMatches}/>
-            <Route path="ClothesList" component={ClothesList}/>
-            <Route path="AddList" component={AddList}/>
-        </Route>
-    </Router>,
+<Router history={browserHistory}>
+
+    <Route path="/" component={App}>
+        <IndexRoute component={Home}/>
+        <Route path="Home" component={Home}/>
+        <Route path="LoginAndRegister" component={LoginAndRegister}/>
+        <Route path="AllMatches" component={AllMatches}/>
+        <Route path="ClothesList" component={ClothesList}/>
+        <Route path="AddList" component={AddList}/>
+    </Route>
+</Router>,
     document.body
-);
+)
+;
 

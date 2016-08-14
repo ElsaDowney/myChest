@@ -1,6 +1,7 @@
 const db = require('../models/user');
 
 exports.selectOneToLogin = function (req, res) {
+
     db.selectOne({userName: req.body.name}, function (result) {
         if (result.length === 0) {
             res.send('0');
