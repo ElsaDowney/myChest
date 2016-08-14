@@ -6,6 +6,12 @@ exports.getAllClothes = function (req, res) {
     });
 };
 
+exports.deleteOneClothes = function(req,res){
+  clothes.deleteOneClothes(req.body,function(result){
+    res.json(result).end();
+  })
+};
+
 exports.save = function(req,res){
   clothes.save(req.body,function(result){
     res.json(result).end();

@@ -5,7 +5,7 @@ class ClothesList extends Component{
     super();
     this.state={
       allColthes:[]
-    }
+    };
   }
 
   componentDidMount(){
@@ -43,6 +43,7 @@ class ClothesList extends Component{
     const _id = 0;
     $.get("/clothes/0",function(data) {
       this.setState({allColthes:data});
+      console.log(data)
     }.bind(this)
   );
   }
@@ -52,11 +53,21 @@ class ClothesList extends Component{
    }
 
   remove(section){
-    const id = section._id;
+    const c_id = section.c_id;
     const allColthes = this.state.allColthes;
-    const index = allColthes.indexOf(allColthes.find(item => item._id === id));
+    const index = allColthes.indexOf(allColthes.find(item => item.c_id === c_id));
     allColthes.splice(index,1);
     this.setState({allColthes});
+
+    const _id = 0;
+    $.ajax({
+      type:"DELETE",
+      url:"/clothes",
+      contentType:"application/json",
+      data:JSON.stringify({_id,c_id}),
+      success:function(data){}
+    });
+
   }
                                         　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
   setStyle(id){
@@ -69,11 +80,11 @@ class ClothesList extends Component{
       return (
         <div className="imgSize">
           <img src={imgUrl} id="show"
-              onfocus={this.setStyle.bind(this.id)}/>
+              onFocus={this.setStyle.bind(this.id)}/>
           <span className="delete"
                 onClick={this.remove.bind(this,section)}>X</span>
               <input type="checkbox" name="selected" className="input-select"
-                    value={section._id}/>
+                    value={section.c_id}/>
         </div>
       )
     });
@@ -92,10 +103,20 @@ class ClothesList extends Component{
   }
 
   confirmMatch(){
-    const match = [];
+    const matches = [];
     $("input[name=selected]:checked").each(function(){
       match.push($(this).val())
     });
+
+    const _id = 0;
+
+   $.ajax({
+     type:"POST",
+     url:"/clothes/matches",
+     contentType:"applicaton/json",
+     data:JSON.stringify({_id,matches}),
+     success:function(data){}
+   })
   }
 
   render(){

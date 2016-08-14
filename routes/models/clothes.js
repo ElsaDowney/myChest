@@ -8,8 +8,18 @@ exports.getAllClothes = function (_id,callback) {
         const collection = db.collection('clothes');
         collection.findOne({_id:parseInt(_id)},function (err, docs) {
             callback(docs);
-        })
+        });
         db.close();
+    })
+};
+
+exports.deleteOneClothes = function(idObj,callback){
+    MongoClient.connect(url, function (err, db) {
+      const collection = db.collection('clothes');
+      collection.update({_id:idObj._id}, {$pull:{"clo_list":{"c_id":idObj.c_id}}},function(err,result){
+        callback(result)
+        });
+      db.close();
     })
 };
 
