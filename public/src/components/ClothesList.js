@@ -5,48 +5,43 @@ class ClothesList extends Component{
     super();
     this.state={
       allColthes:[]
-    }
+    };
   }
 
   componentDidMount(){
-    const array = [
-      {_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0"},
-      {_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1"},
-      {_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2"},
-      {_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3"}
+
+  const array = [
+    {_id:0,
+      userName:"xiaopangzhu",
+      password:"123456",
+      clo_list:[
+        {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+        {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+        {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+      ]
+    },
+    {_id:1,
+      userName:"xiaopangzhu",
+      password:"123456",
+      clo_list:[
+        {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+        {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+        {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+      ]
+    }
   ];
-  // const array = [
-  //   {u_id:0,
-  //     userName:"xiaopangzhu",
-  //     password:"123456",
-  //     clothes_list:[
-  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
-  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
-  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
-  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
-  //     ]
-  //   },
-  //   {u_id:2,
-  //     userName:"xiaopangzhu",
-  //     password:"123456",
-  //     clothes:[
-  //       {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
-  //       {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
-  //       {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
-  //       {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
-  //     ]
-  //   }
-  // ];
     $.ajax({
       type:"POST",
       url:"/clothes",
       contentType:"application/json",
       data:JSON.stringify(array),
       success:function(data){}
-    })
+    });
 
-    const u_id = 0;
-    $.get(`/clothes`,function(data) {
+    const _id = 0;
+    $.get("/clothes/0",function(data) {
       this.setState({allColthes:data});
     }.bind(this)
   );
@@ -57,11 +52,21 @@ class ClothesList extends Component{
    }
 
   remove(section){
-    const id = section._id;
+    const c_id = section.c_id;
     const allColthes = this.state.allColthes;
-    const index = allColthes.indexOf(allColthes.find(item => item._id === id));
+    const index = allColthes.indexOf(allColthes.find(item => item.c_id === c_id));
     allColthes.splice(index,1);
     this.setState({allColthes});
+
+    const _id = 0;
+    $.ajax({
+      type:"DELETE",
+      url:"/clothes",
+      contentType:"application/json",
+      data:JSON.stringify({_id,c_id}),
+      success:function(data){}
+    });
+
   }
                                         　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
   setStyle(id){
@@ -78,7 +83,7 @@ class ClothesList extends Component{
           <span className="delete"
                 onClick={this.remove.bind(this,section)}>X</span>
               <input type="checkbox" name="selected" className="input-select"
-                    value={section._id}/>
+                    value={section.c_id}/>
         </div>
       )
     });
@@ -97,10 +102,20 @@ class ClothesList extends Component{
   }
 
   confirmMatch(){
-    const match = [];
+    const matches = [];
     $("input[name=selected]:checked").each(function(){
       match.push($(this).val())
     });
+
+    const _id = 0;
+
+   $.ajax({
+     type:"POST",
+     url:"/clothes/matches",
+     contentType:"applicaton/json",
+     data:JSON.stringify({_id,matches}),
+     success:function(data){}
+   })
   }
 
   render(){

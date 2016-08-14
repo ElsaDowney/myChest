@@ -1,9 +1,15 @@
 const clothes = require('../models/clothes');
 
-exports.findAll = function (req, res) {
-    clothes.findAll(function (result) {
-        res.json(result).end();
+exports.getAllClothes = function (req, res) {
+    clothes.getAllClothes(req.params._id,function (result) {
+        res.json(result.clo_list).end();
     });
+};
+
+exports.deleteOneClothes = function(req,res){
+  clothes.deleteOneClothes(req.body,function(result){
+    res.json(result).end();
+  })
 };
 
 exports.save = function(req,res){

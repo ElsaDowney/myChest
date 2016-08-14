@@ -6,9 +6,10 @@ const matchAction = require('./actions/matchAction');
 const app = new express();
 const router = express.Router();
 
-router.get('/clothes',clothesAction.findAll);
+router.get('/clothes/:_id',clothesAction.getAllClothes);
 router.post('/clothes',clothesAction.save);
-
+router.delete('/clothes',clothesAction.deleteOneClothes);
+router.post('/clothes/matches',matchAction.updateMatches)
 
 
 router.post('/login',userAction.selectOneToLogin);
