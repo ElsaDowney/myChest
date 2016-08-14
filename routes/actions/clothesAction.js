@@ -1,8 +1,8 @@
 const clothes = require('../models/clothes');
 
-exports.findAll = function (req, res) {
-    clothes.findAll(function (result) {
-        res.json(result).end();
+exports.getAllClothes = function (req, res) {
+    clothes.getAllClothes(req.params._id,function (result) {
+        res.json(result.clo_list).end();
     });
 };
 
@@ -10,7 +10,7 @@ exports.save = function(req,res){
   clothes.save(req.body,function(result){
     res.json(result).end();
   });
-}
+};
 
 exports.addList = function (req, res) {
     const data = {
@@ -25,4 +25,4 @@ exports.addList = function (req, res) {
     clothes.add(data,function (result) {
         res.json(result).end();
     })
-}
+};

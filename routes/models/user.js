@@ -3,6 +3,7 @@ const MongoClient = require('mongodb').MongoClient;
 //数据库命名为myChest
 const url = 'mongodb://localhost:27017/myChest';
 
+
 exports.selectOne = function (name, callback) {
     var selectData = function (db, callback) {
         const collection = db.collection('clothes');
@@ -21,11 +22,15 @@ exports.selectOne = function (name, callback) {
     });
 };
 
-exports.register = function (data, callback) {
 
+
+
+
+
+
+exports.register = function (data, callback) {
     var insertData = function (db, callback) {
         const collection = db.collection('clothes');
-
         collection.insert(data, function (err, result) {
             if (err) {
                 console.log('Error:' + err);
@@ -33,11 +38,8 @@ exports.register = function (data, callback) {
             }
             callback(result);
         });
-    }
-
-
+    };
     var selectData = function (db, callback) {
-        //连接到表
         const collection = db.collection('clothes');
         collection.find({userName: data.userName}).toArray(function (err, result) {
             if (err) {
@@ -52,7 +54,6 @@ exports.register = function (data, callback) {
             if (result.length === 0) {
                 insertData(db, function (result) {
                     callback(result);
-
                 });
             }
             else {

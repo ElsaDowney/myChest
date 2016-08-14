@@ -1,4 +1,4 @@
-##myBest
+##myChest
 
 ###use the project by some steps
     cnpm i
