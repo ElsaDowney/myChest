@@ -7,6 +7,7 @@ const style = {
     msTransition: 'all'
 };
 
+
 var LoginAndRegister = React.createClass({
         getInitialState: function () {
             return {
@@ -21,22 +22,24 @@ var LoginAndRegister = React.createClass({
         },
         render: function () {
             return (
+                <div className="loginbackground">
 
-                <div className="panel-heading container " id="center" style={style}>
-                    <div className="row">
-                        <div className="col-md-6 ">
-                            <a onClick={this.toLogin} className="title">Login</a>
+                    <div className="panel-heading container loginStyle" id="center" style={style}>
+                        <div className="row">
+                            <div className="col-md-6 ">
+                                <a onClick={this.toLogin} className="title">Login</a>
+                            </div>
+                            <div className="col-md-6  ">
+                                <a onClick={this.toRegister} className="title">Register</a>
+                            </div>
                         </div>
-                        <div className="col-md-6  ">
-                            <a onClick={this.toRegister} className="title">Register</a>
+                        <hr/>
+                        <div className={this.state.fixture ? '' : 'hidden'}>
+                            <Login onName={this.props.onName}/>
                         </div>
-                    </div>
-                    <hr/>
-                    <div className={this.state.fixture ? '' : 'hidden'}>
-                        <Login onName={this.props.onName}/>
-                    </div>
-                    <div className={this.state.fixture ? 'hidden' : ''}>
-                        <Register/>
+                        <div className={this.state.fixture ? 'hidden' : ''}>
+                            <Register/>
+                        </div>
                     </div>
                 </div>
             );
@@ -51,7 +54,6 @@ var Login = React.createClass({
         const username = $('#loginName').val();
         const password = $('#loginPassword').val();
         console.log({username, password});
-        // this.props.onName(username)
         $.ajax({
             url: '/login',
             type: 'POST',
@@ -64,18 +66,12 @@ var Login = React.createClass({
                         alert("用户不存在,请先注册");
                     } else {
                         alert("登陆成功");
-                        // location.href='/'
                         this.props.onName(username);
 
                         browserHistory.push('/');
                     }
                 }
             }.bind(this),
-            error: function (data, status) {
-                if (status == "error") {
-                    // location.href='login'
-                }
-            }
         });
 
     },
@@ -122,20 +118,15 @@ var Register = React.createClass({
                 success: function (data, status) {
                     if (status == 'success') {
                         if (data === '1') {
-                            alert('注册成功');
-                            location.href = '/'
+                            alert('注册成功,请登陆');
+
                         }
                         else {
                             alert("该用户已存在,不能进行注册");
                         }
                     }
                 }
-                // ,
-                // error: function (data, status) {
-                //     if (status == "error") {
-                //         // location.href='login'
-                //     }
-                // }
+
             });
         } else {
             alert("两次密码不同,请重新输入");

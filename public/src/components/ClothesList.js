@@ -40,8 +40,8 @@ class ClothesList extends Component{
       success:function(data){}
     });
 
-    const _id = 0;
-    $.get("/clothes/0",function(data) {
+    const _id = 1;
+    $.get("/clothes/1",function(data) {
       this.setState({allColthes:data});
       console.log(data)
     }.bind(this)
@@ -59,7 +59,7 @@ class ClothesList extends Component{
     allColthes.splice(index,1);
     this.setState({allColthes});
 
-    const _id = 0;
+    const _id = 1;
     $.ajax({
       type:"DELETE",
       url:"/clothes",
@@ -105,18 +105,18 @@ class ClothesList extends Component{
   confirmMatch(){
     const matches = [];
     $("input[name=selected]:checked").each(function(){
-      match.push($(this).val())
+      matches.push($(this).val())
     });
 
-    const _id = 0;
-
+    const _id = 1;
    $.ajax({
      type:"POST",
      url:"/clothes/matches",
-     contentType:"applicaton/json",
+     contentType:"application/json",
      data:JSON.stringify({_id,matches}),
      success:function(data){}
    })
+
   }
 
   render(){

@@ -8,7 +8,7 @@ class Home extends Component {
         //     $('#myCarousel1').carousel('cycle');
         // });
         return (
-            <div>
+            <div >
                 <div classID="myCarousel" className="carousel slide" data-ride="carousel">
                     <ol className="carousel-indicators">
                         <li data-target="#myCarousel" data-slide-to="0" className="active"></li>

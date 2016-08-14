@@ -11,11 +11,10 @@ router.post('/clothes',clothesAction.save);
 router.delete('/clothes',clothesAction.deleteOneClothes);
 router.post('/clothes/matches',matchAction.updateMatches);
 
+
 router.post('/login',userAction.selectOneToLogin);
 router.post('/register',userAction.saveToRegister);
 
 router.post('/allMatches',matchAction.AllMatches);
-
-//......
 
 module.exports = router;
