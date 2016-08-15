@@ -8,7 +8,7 @@ exports.getAllClothes = function (_id,callback) {
         const collection = db.collection('clothes');
         collection.findOne({_id:parseInt(_id)},function (err, docs) {
             callback(docs);
-        })
+        });
         db.close();
     })
 };

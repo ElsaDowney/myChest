@@ -43,6 +43,7 @@ class ClothesList extends Component{
     const _id = 1;
     $.get("/clothes/1",function(data) {
       this.setState({allColthes:data});
+      console.log(data)
     }.bind(this)
   );
   }
@@ -79,7 +80,7 @@ class ClothesList extends Component{
       return (
         <div className="imgSize">
           <img src={imgUrl} id="show"
-              onfocus={this.setStyle.bind(this.id)}/>
+              onFocus={this.setStyle.bind(this.id)}/>
           <span className="delete"
                 onClick={this.remove.bind(this,section)}>X</span>
               <input type="checkbox" name="selected" className="input-select"
@@ -136,7 +137,7 @@ class ClothesList extends Component{
       }
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
-      })
+      });
       return (
         <div className="wrap-colthes">
           {clothes}

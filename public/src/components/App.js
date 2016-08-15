@@ -8,7 +8,7 @@ const App = React.createClass({
         }
     },
     getName : function(name){
-       this.setState({name:name});
+        this.setState({name:name});
         console.log(name)
     },
     render() {
