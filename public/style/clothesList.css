@@ -30,7 +30,8 @@
 }
 
 .input-select{
-  display: none;
+    /*outline:none;*/
+    /*background-color: transparent;*/
 }
 
 .btn-float{

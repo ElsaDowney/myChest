@@ -43,7 +43,6 @@ class ClothesList extends Component{
     const _id = 1;
     $.get("/clothes/1",function(data) {
       this.setState({allColthes:data});
-      console.log(data)
     }.bind(this)
   );
   }
@@ -83,8 +82,7 @@ class ClothesList extends Component{
               onFocus={this.setStyle.bind(this.id)}/>
           <span className="delete"
                 onClick={this.remove.bind(this,section)}>X</span>
-              <input type="checkbox" name="selected" className="input-select"
-                    value={section.c_id}/>
+
         </div>
       )
     });
@@ -99,7 +97,8 @@ class ClothesList extends Component{
   }
 
   matchClothes(){
-    $('.input-select').css("display","inline");
+    $(".imgSize").append(<input type="checkbox" name="selected" className="input-select glyphicon glyphicon-heart"  id="checkboxInput"
+    value={section.c_id}/>);
   }
 
   confirmMatch(){
