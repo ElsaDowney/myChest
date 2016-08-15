@@ -15,6 +15,6 @@ router.post('/clothes/matches',matchAction.updateMatches);
 router.post('/login',userAction.selectOneToLogin);
 router.post('/register',userAction.saveToRegister);
 
-router.post('/allMatches',matchAction.AllMatches);
+router.get('/allMatches',matchAction.AllMatches);
 
 module.exports = router;

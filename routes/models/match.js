@@ -15,7 +15,7 @@ exports.updateMatches = function(_id,c_id1,c_id2,callback){
   });
 };
 
-exports.allMatches=function(callback){
+exports.AllMatches=function(callback){
 
     MongoClient.connect(url, function (err, db) {
         AllMatches(db, function (result) {
