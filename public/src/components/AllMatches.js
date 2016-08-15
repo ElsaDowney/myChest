@@ -13,7 +13,9 @@ const AllMatches = React.createClass({
             this.setState({clothes:data});
         });
     },
-    render: function () {
+
+    getAllMatches:function () {
+
         const allMach = this.state.clothes[0].clothes;
         const show = [];
         allMach.map((cloth)=> {
@@ -39,22 +41,29 @@ const AllMatches = React.createClass({
             }
         });
 
-        return (
-            <div className="container  top ">
-                {showAll.map((cloth, index)=> {
-                    return <form key={index} className="col-sm-6 col-md-3 fm">
-                        <div ><img className="img-thumbnail" src={cloth.up}
-                                   alt="通用的占位符缩略图"/>
-                        </div>
-                        <div ><img className="img-thumbnail" src={cloth.down}
-                                   alt="通用的占位符缩略图"/>
-                        </div>
-                    </form>
+        return showAll;
+    },
 
-                })}
+    getStyle:function (cloth,index) {
+      return <div className="totalTop">
+          <form key={index} className="col-sm-6 col-md-3 ">
+              <div ><img className="img-thumbnail photoTop" src={cloth.up}
+                         alt="通用的占位符缩略图"/>
+              </div>
+              <div ><img className="img-thumbnail photoBottom" src={cloth.down}
+                         alt="通用的占位符缩略图"/>
+              </div>
+          </form>
+      </div>
+    },
 
-            </div>
-        )
+    render: function () {
+        const allMatches=this.getAllMatches().map((cloth,index)=>{
+            return this.getStyle(cloth,index);
+        });
+      return <div className="container  top  wrap-colthes" >
+          {allMatches}
+      </div>
     }
 });
 
