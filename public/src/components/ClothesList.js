@@ -134,7 +134,6 @@ class ClothesList extends Component{
           clothesWithClass.push(clothesObj);
         }
       }
-      // console.log(clothesWithClass);
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
       })

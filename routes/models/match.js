@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 
-//数据库命名为myChest
 const url = 'mongodb://localhost:27017/myChest';
 
 exports.updateMatches = function(_id,c_id1,c_id2,callback){
