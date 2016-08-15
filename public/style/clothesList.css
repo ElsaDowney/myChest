@@ -19,18 +19,48 @@
   border-radius: 5px;
 }
 
+.delete-wrap{
+  display: inline-block;
+  position: relative;
+  top: -75px;
+  left: -38px;
+  background: #7e7878;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  line-height: 30px;
+  text-align: center;
+  /*vertical-align: middle;*/
+}
+
 .delete{
-    position: relative;
+    color: black;
+    /*position: relative;
     top: -70px;
     left: -30px;
+    color: red;*/
     /*display: none;*/
     /*background: block;*/
     /*opacity: 0.5;*/
-    border: 1px solid red;
+    /*border: 1px solid red;*/
+}
+
+.select{
+  width: 170px;
+  text-align: center;
 }
 
 .input-select{
   display: none;
+}
+
+.h4-inline{
+  display:inline-block;
+}
+
+.btn-add{
+  float:right;
+  
 }
 
 .btn-float{

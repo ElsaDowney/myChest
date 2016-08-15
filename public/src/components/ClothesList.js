@@ -43,7 +43,6 @@ class ClothesList extends Component{
     const _id = 1;
     $.get("/clothes/1",function(data) {
       this.setState({allColthes:data});
-      console.log(data)
     }.bind(this)
   );
   }
@@ -74,26 +73,50 @@ class ClothesList extends Component{
     $("#id").css.display = "inline";
   }
 
+  mouseOver(){
+    // $('.a').next().css("opacity",1);
+    $('.a').mouseover(function(){
+      $(this).next().css("opacity",0.5);
+    });
+    $('.delete-wrap').mouseover(function(){
+      $(this).css("opacity",0.5)
+    })
+    // e.target.next().css("opacity",1);
+  }
+
+  mouseOut(){
+    $('.a').mouseout(function(){
+      $(this).next().css("opacity",0);
+    });
+    // e.target.next().css("opacity",0.5);
+  }
+
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
       const imgUrl = `../../images/image${section.image}.png`;
       return (
         <div className="imgSize">
-          <img src={imgUrl} id="show"
-              onFocus={this.setStyle.bind(this.id)}/>
-          <span className="delete"
-                onClick={this.remove.bind(this,section)}>X</span>
-              <input type="checkbox" name="selected" className="input-select"
+          <img className="a" src={imgUrl}
+              onMouseOver={this.mouseOver}
+              onMouseOut={this.mouseOut}/>
+          <div className="delete-wrap">
+            <span className="glyphicon glyphicon-trash delete"
+              onClick={this.remove.bind(this,section)}></span>
+          </div>
+          <div className="select">
+            <input type="radio" name={section.sort} className="input-select"
                     value={section.c_id}/>
+          </div>
         </div>
       )
     });
     return (
       <div>
-        <h4>{clothes.sort}</h4>
+        <h4 className="h4-inline">{clothes.sort}</h4>
+        <button className="button button-royal button-circle button-giant btn-add">
+          <i className="fa fa-plus"></i></button>
         <hr />
         {sectionClothes}
-        <button><span className="glyphicon glyphicon-plus"></span></button>
       </div>
     )
   }
@@ -104,7 +127,7 @@ class ClothesList extends Component{
 
   confirmMatch(){
     const matches = [];
-    $("input[name=selected]:checked").each(function(){
+    $("input:checked").each(function(){
       matches.push($(this).val())
     });
 
