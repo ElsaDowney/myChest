@@ -11,33 +11,33 @@ class ClothesList extends Component{
   }
 
   componentDidMount(){
-  const array = [
-    {_id:1,
-      userName:"xiaopangzhu",
-      password:"123456",
-      clo_list:[
-        {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
-        {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
-        {c_id:2,season:"summer",color:"blue",sort:"coat",style:"simple",image:"2",matches:[]},
-        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:4,season:"summer",color:"white",sort:"pants",style:"simple",image:"4",matches:[]},
-        {c_id:5,season:"summer",color:"white",sort:"pants",style:"simple",image:"5",matches:[]},
-        {c_id:6,season:"summer",color:"white",sort:"pants",style:"simple",image:"6",matches:[]},
-        {c_id:7,season:"summer",color:"white",sort:"pants",style:"simple",image:"7",matches:[]},
-        {c_id:8,season:"summer",color:"white",sort:"pants",style:"simple",image:"8",matches:[]},
-      ]
-    },
-    {_id:0,
-      userName:"xiaopangzhu",
-      password:"123456",
-      clo_list:[
-        {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
-        {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
-        {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
-        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
-      ]
-    }
-  ];
+    const array = [
+      {_id:1,
+        userName:"xiaopangzhu",
+        password:"123456",
+        clo_list:[
+          {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+          {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+          {c_id:2,season:"summer",color:"blue",sort:"coat",style:"simple",image:"2",matches:[]},
+          {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
+          {c_id:4,season:"summer",color:"white",sort:"pants",style:"simple",image:"4",matches:[]},
+          {c_id:5,season:"summer",color:"white",sort:"pants",style:"simple",image:"5",matches:[]},
+          {c_id:6,season:"summer",color:"white",sort:"pants",style:"simple",image:"6",matches:[]},
+          {c_id:7,season:"summer",color:"white",sort:"pants",style:"simple",image:"7",matches:[]},
+          {c_id:8,season:"summer",color:"white",sort:"pants",style:"simple",image:"8",matches:[]},
+        ]
+      },
+      {_id:0,
+        userName:"xiaopangzhu",
+        password:"123456",
+        clo_list:[
+          {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
+          {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
+          {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
+          {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+        ]
+      }
+    ];
     $.ajax({
       type:"POST",
       url:"/clothes",
@@ -48,14 +48,14 @@ class ClothesList extends Component{
 
     const _id = 1;
     $.get("/clothes/"+_id,function(data) {
-      this.setState({allColthes:data});
-    }.bind(this)
-  );
+          this.setState({allColthes:data});
+        }.bind(this)
+    );
   }
 
   findClothesType(type,clothes){
     return  clothes.find(item => item.sort === type);
-   }
+  }
 
   remove(section){
     const c_id = section.c_id;
@@ -76,7 +76,7 @@ class ClothesList extends Component{
     });
 
   }
-                                        　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+
   setStyle(id){
     $("#id").css.display = "inline";
   }
@@ -104,37 +104,37 @@ class ClothesList extends Component{
     const sectionClothes = clothes.allSections.map(section => {
       const imgUrl = `../../images/image${section.image}.png`;
       return (
-        <div className="imgSize">
-          <div className="img-wrap"></div>
-          <img className="a" src={imgUrl}
+          <div className="imgSize">
+            <div className="img-wrap"></div>
+            <img className="a" src={imgUrl}
                  onMouseOver={this.mouseOver}
                  onMouseOut={this.mouseOut}/>
-          <div className="delete-wrap">
+            <div className="delete-wrap">
             <span className="glyphicon glyphicon-trash delete"
-              onClick={this.remove.bind(this,section)}>
+                  onClick={this.remove.bind(this,section)}>
             </span>
+            </div>
+            <div className="select">
+              <input type="radio" name={section.sort} className="input-select"
+                     value={section.c_id}
+                     onClick={this.addWrap}/>
+            </div>
           </div>
-          <div className="select">
-            <input type="radio" name={section.sort} className="input-select"
-                    value={section.c_id}
-                   onClick={this.addWrap}/>
-          </div>
-        </div>
       )
     });
     return (
-      <div>
-        <span className="title-inline text-success">{clothes.sort}</span>
-        <Link to="AddList">
-          <button className="button button-action button-circle btn-add">
-            <i className="fa fa-plus">
-            </i>
-          </button>
-        </Link>
-        <hr />
-        {sectionClothes}
-        <hr />
-      </div>
+        <div>
+          <span className="title-inline text-success">{clothes.sort}</span>
+          <Link to="AddList">
+            <button className="button button-action button-circle btn-add">
+              <i className="fa fa-plus">
+              </i>
+            </button>
+          </Link>
+          <hr />
+          {sectionClothes}
+          <hr />
+        </div>
     )
   }
 
@@ -153,16 +153,16 @@ class ClothesList extends Component{
     });
 
     const _id = 1;
-   $.ajax({
-     type:"POST",
-     url:"/clothes/matches",
-     contentType:"application/json",
-     data:JSON.stringify({_id,matches}),
-     success:function(data){
-       alert("搭配衣服成功");
-       browserHistory.push('/AllMatches');
-     }
-   })
+    $.ajax({
+      type:"POST",
+      url:"/clothes/matches",
+      contentType:"application/json",
+      data:JSON.stringify({_id,matches}),
+      success:function(data){
+        alert("搭配衣服成功");
+        browserHistory.push('/AllMatches');
+      }
+    })
 
   }
 
@@ -170,22 +170,22 @@ class ClothesList extends Component{
     const allColthes = this.state.allColthes;
     const clothesWithClass = [];
     for(let clothes of allColthes){
-        const element = this.findClothesType(clothes.sort,clothesWithClass);
-        if (element) {
-          element.allSections.push(clothes)
-        }else {
-          const clothesObj = {};
-          const arr = [];
-          arr.push(clothes);
-          clothesObj.sort =clothes.sort;
-          clothesObj.allSections = arr;
-          clothesWithClass.push(clothesObj);
-        }
+      const element = this.findClothesType(clothes.sort,clothesWithClass);
+      if (element) {
+        element.allSections.push(clothes)
+      }else {
+        const clothesObj = {};
+        const arr = [];
+        arr.push(clothes);
+        clothesObj.sort =clothes.sort;
+        clothesObj.allSections = arr;
+        clothesWithClass.push(clothesObj);
       }
-      const clothes = clothesWithClass.map(clothes => {
-        return this.getAllSectionWithTig(clothes);
-      });
-      return (
+    }
+    const clothes = clothesWithClass.map(clothes => {
+      return this.getAllSectionWithTig(clothes);
+    });
+    return (
         <div className="wrap-colthes">
           {clothes}
           <button className="btn-match btn btn-primary"
@@ -194,7 +194,7 @@ class ClothesList extends Component{
           <p className="btn-foot"><button className="btn btn-info" onClick={this.confirmMatch}>确认搭配</button></p>
           <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
-      )
+    )
   }
 }
 

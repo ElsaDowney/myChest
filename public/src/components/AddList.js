@@ -68,9 +68,7 @@ const AddList = React.createClass({
                     <div><Color onColor={this.onColor}/></div>
                     <div><Style onStyle={this.onStyle}/></div>
                     <div><Sort onSort={this.onSort}/></div>
-                    {/*<div><input type="file" id="clo-image"/></div>*/}
                     <ImageUpload onAddImage={this.onAddImage}/>
-                    {/*<input type="hidden" name="key" valud''/>*/}
                     <input onClick={this.saveAdd} type="button" value="保存"/>
                 </form>
             </div>
