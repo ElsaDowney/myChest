@@ -34,7 +34,7 @@ const Nav = React.createClass({
                                 <ul className="nav navbar-nav navbar-right">
                                     <li><Link to='LoginAndRegister'>{info}</Link></li>
                                     <li className={this.props.name===''?'hidden':''}>
-                                        <a onClick={this.logout}>退出</a>
+                                        <a  className="loginOut" onClick={this.logout}>退出</a>
                                     </li>
                                 </ul>
 

@@ -21,7 +21,7 @@ render(
         <Route path="AddList" component={AddList}/>
     </Route>
 </Router>,
-    document.body
+    document.getElementById('App')
 )
 ;
 
