@@ -19,8 +19,6 @@
   position: absolute;
   background: #ffffcc;
   opacity: 0.5;
-  /*position: absolute;*/
-  /*top: 20px;*/
   width:150px;
   height:180px;
   left:10px;
@@ -60,10 +58,7 @@
 
 .input-select{
   display:none;
-  /*background-color: red;*/
   outline:none;
-  /*border:0;*/
-
   border:10px groove blue;
   width:20px;
   height:20px;
@@ -87,8 +82,8 @@
   top:-8px;
 }
 
-
 .btn-float{
+  display: none;
   position: fixed;
   right: 6%;
   top: 45%;

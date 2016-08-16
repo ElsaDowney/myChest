@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {browserHistory} from 'react-router';
+const Link = require('react-router').Link;
 
 class ClothesList extends Component{
   constructor(){
@@ -9,7 +11,6 @@ class ClothesList extends Component{
   }
 
   componentDidMount(){
-
   const array = [
     {_id:1,
       userName:"xiaopangzhu",
@@ -18,17 +19,12 @@ class ClothesList extends Component{
         {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
         {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
         {c_id:2,season:"summer",color:"blue",sort:"coat",style:"simple",image:"2",matches:[]},
-        {c_id:3,season:"summer",color:"white",sort:"coat",style:"simple",image:"3",matches:[]},
-        {c_id:4,season:"summer",color:"white",sort:"coat",style:"simple",image:"3",matches:[]},
-        {c_id:5,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:6,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:7,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:8,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:9,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
-        {c_id:10,season:"summer",color:"white",sort:"jackice",style:"simple",image:"3",matches:[]},
-        {c_id:11,season:"summer",color:"white",sort:"jackice",style:"simple",image:"3",matches:[]},
-        {c_id:12,season:"summer",color:"white",sort:"jackice",style:"simple",image:"3",matches:[]},
-        {c_id:13,season:"summer",color:"white",sort:"jackice",style:"simple",image:"3",matches:[]}
+        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
+        {c_id:4,season:"summer",color:"white",sort:"pants",style:"simple",image:"4",matches:[]},
+        {c_id:5,season:"summer",color:"white",sort:"pants",style:"simple",image:"5",matches:[]},
+        {c_id:6,season:"summer",color:"white",sort:"pants",style:"simple",image:"6",matches:[]},
+        {c_id:7,season:"summer",color:"white",sort:"pants",style:"simple",image:"7",matches:[]},
+        {c_id:8,season:"summer",color:"white",sort:"pants",style:"simple",image:"8",matches:[]},
       ]
     },
     {_id:0,
@@ -51,7 +47,7 @@ class ClothesList extends Component{
     });
 
     const _id = 1;
-    $.get("/clothes/1",function(data) {
+    $.get("/clothes/"+_id,function(data) {
       this.setState({allColthes:data});
     }.bind(this)
   );
@@ -74,7 +70,9 @@ class ClothesList extends Component{
       url:"/clothes",
       contentType:"application/json",
       data:JSON.stringify({_id,c_id}),
-      success:function(data){}
+      success:function(data){
+        alert("删除成功!");
+      }
     });
 
   }
@@ -98,10 +96,9 @@ class ClothesList extends Component{
     });
   }
   addWrap(){
-        $("input:checked").parent().siblings(".img-wrap").css("display","inline");
-        $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
-
-    }
+    $("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
+  }
 
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
@@ -128,10 +125,12 @@ class ClothesList extends Component{
     return (
       <div>
         <span className="title-inline text-success">{clothes.sort}</span>
-        <button className="button button-action button-circle btn-add">
-          <i className="fa fa-plus">
-          </i>
-        </button>
+        <Link to="AddList">
+          <button className="button button-action button-circle btn-add">
+            <i className="fa fa-plus">
+            </i>
+          </button>
+        </Link>
         <hr />
         {sectionClothes}
         <hr />
@@ -140,8 +139,8 @@ class ClothesList extends Component{
   }
 
   matchClothes(){
-
     $(".input-select").css("display","inline");
+    $(".btn-float").css("display","inline");
   }
 
   confirmMatch(){
@@ -156,7 +155,10 @@ class ClothesList extends Component{
      url:"/clothes/matches",
      contentType:"application/json",
      data:JSON.stringify({_id,matches}),
-     success:function(data){}
+     success:function(data){
+       alert("搭配衣服成功");
+       browserHistory.push('/AllMatches');
+     }
    })
 
   }
@@ -185,7 +187,7 @@ class ClothesList extends Component{
           {clothes}
           <button className="btn-match btn btn-primary" onClick={this.matchClothes}>搭配</button>
           <button className="btn-float btn btn-info" onClick={this.confirmMatch}>确认搭配</button>
-          <p className="btn-foot"><button>点击添加类型</button></p>
+          <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
       )
   }
