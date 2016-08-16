@@ -140,7 +140,10 @@ class ClothesList extends Component{
 
   matchClothes(){
     $(".input-select").css("display","inline");
-    $(".btn-float").css("display","inline");
+  }
+
+  hiddenMatch(){
+    $(".input-select").css("display","none");
   }
 
   confirmMatch(){
@@ -185,8 +188,10 @@ class ClothesList extends Component{
       return (
         <div className="wrap-colthes">
           {clothes}
-          <button className="btn-match btn btn-primary" onClick={this.matchClothes}>搭配</button>
-          <button className="btn-float btn btn-info" onClick={this.confirmMatch}>确认搭配</button>
+          <button className="btn-match btn btn-primary"
+                  onClick={this.matchClothes}
+                  onDoubleClick={this.hiddenMatch}>搭配</button>
+          <p className="btn-foot"><button className="btn btn-info" onClick={this.confirmMatch}>确认搭配</button></p>
           <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
       )
