@@ -1,39 +1,40 @@
 {
-	"name": "todo-list-first",
-	"version": "1.0.0",
-	"license": "ISC",
-	"main": "index.js",
-	"scripts": {
-		"test": "mocha",
-		"start": "node program.js",
-		"webpack": "webpack"
-	},
-	"dependencies": {
-		"babel": "^6.5.2",
-		"babel-cli": "^6.11.4",
-		"babel-preset-es2015": "^6.13.2",
-		"body-parser": "^1.15.2",
-		"bootstrap": "^3.3.7",
-		"express": "^4.14.0",
-		"react-router": "^2.6.1",
-		"mocha": "^3.0.2",
-		"mongodb": "^2.2.5",
-		"react": "^15.3.0",
-		"react-dom": "^15.3.0",
-		"supertest": "^2.0.0"
-	},
-	"devDependencies": {
-		"babel-loader": "^6.2.4",
-		"babel-preset-es2015": "^6.13.2",
-		"babel-preset-react": "^6.11.1",
-		"babel-preset-react-hmre": "^1.1.1",
-		"css-loader": "^0.23.1",
-		"extract-text-webpack-plugin": "^1.0.1",
-		"file-loader": "^0.9.0",
-		"style-loader": "^0.13.1",
-		"url-loader": "^0.5.7",
-		"webpack": "^1.13.1",
-		"webpack-dev-middleware": "^1.6.1",
-		"webpack-hot-middleware": "^2.12.2"
-	}
+  "name": "todo-list-first",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node program.js",
+    "webpack": "webpack"
+  },
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.13.2",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "connect-busboy": "^0.0.2",
+    "express": "^4.14.0",
+    "mocha": "^3.0.2",
+    "mongodb": "^2.2.5",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-router": "^2.6.1",
+    "supertest": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.12.2"
+  }
 }

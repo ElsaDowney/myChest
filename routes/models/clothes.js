@@ -14,13 +14,15 @@ exports.getAllClothes = function (_id,callback) {
 };
 
 exports.deleteOneClothes = function(idObj,callback){
-    MongoClient.connect(url, function (err, db) {
-      const collection = db.collection('clothes');
-      collection.update({_id:idObj._id}, {$pull:{"clo_list":{"c_id":idObj.c_id}}},function(err,result){
-        callback(result)
-        });
-      db.close();
-    })
+
+    // MongoClient.connect(url, function (err, db) {
+    //   const collection = db.collection('clothes');
+    //   collection.update({_id:idObj._id}, {$pull:{"clo_list":{"c_id":idObj.c_id}}},function(err,result){
+    //     callback(result)
+    //     });
+    //   db.close();
+    // })
+    callback("nihao");
 };
 
 exports.save = function (data, callback) {
