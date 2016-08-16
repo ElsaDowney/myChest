@@ -74,21 +74,18 @@ class ClothesList extends Component{
   }
 
   mouseOver(){
-    // $('.a').next().css("opacity",1);
     $('.a').mouseover(function(){
       $(this).next().css("opacity",0.5);
     });
     $('.delete-wrap').mouseover(function(){
-      $(this).css("opacity",0.5)
-    })
-    // e.target.next().css("opacity",1);
+      $(this).css("opacity",0.5);
+    });
   }
 
   mouseOut(){
     $('.a').mouseout(function(){
       $(this).next().css("opacity",0);
     });
-    // e.target.next().css("opacity",0.5);
   }
 
   getAllSectionWithTig(clothes){
