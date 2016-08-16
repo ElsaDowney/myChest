@@ -38,21 +38,11 @@ var LoginAndRegister = React.createClass({
                             <Login onName={this.props.onName}/>
                         </div>
                         <div className={this.state.tab ? 'hidden' : ''}>
-                            <a onClick={this.toLogin} className="title">Login</a>
+                           <Register/>
                         </div>
-                        <div className="col-md-6  ">
-                            <a onClick={this.toRegister} className="title">Register</a>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div className={this.state.fixture ? '' : 'hidden'}>
-                        <Login onName={this.props.onName}/>
-                    </div>
-                    <div className={this.state.fixture ? 'hidden' : ''}>
-                        <Register/>
                     </div>
                 </div>
-               
+
             );
         }
     })
