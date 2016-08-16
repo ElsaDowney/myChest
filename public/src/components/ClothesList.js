@@ -96,8 +96,18 @@ class ClothesList extends Component{
     });
   }
   addWrap(){
-    $("input:checked").parent().siblings(".img-wrap").css("display","inline");
-    $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
+    // let a  = $('input:radio').attr('checked');
+    alert($('#select').attr("checked"));
+    // if($('input:radio').attr('checked')){
+      alert("dfhids");
+      $("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    // }
+      // else{
+    //   $("input:checked").parent().siblings(".img-wrap").css("display","none");
+    // }
+    // }
+    // $ 2("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    // $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
   }
 
   getAllSectionWithTig(clothes){
@@ -115,7 +125,7 @@ class ClothesList extends Component{
             </span>
           </div>
           <div className="select">
-            <input type="radio" name={section.sort} className="input-select"
+            <input type="radio" name={section.sort} className="input-select"  id="select"
                     value={section.c_id}
                    onClick={this.addWrap}/>
           </div>

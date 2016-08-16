@@ -17,36 +17,4 @@ router.post('/register',userAction.saveToRegister);
 
 router.get('/allMatches',matchAction.AllMatches);
 
-router.post('/addList', clothesAction.addList);
-
-
-var busboy = require("connect-busboy");
-router.use(busboy())
-
-router.put("/upload", function(req, res){
-    console.log(req.busboy);
-    req.busboy.on("file", function(fieldName, file){
-        console.log(fieldName, file);
-
-        var path = __dirname + "/../public/images/" + 'test.jpg';
-        var writeStream = require('fs').createWriteStream(path)
-
-        file.on('data', function(data) {
-            writeStream.write(data)
-        });
-
-        file.on('end', function() {
-            writeStream.end();
-        });
-
-        file.on('error', function(err) {
-            console.log('something is wrong :( ');
-            writeStream.close();
-        });
-
-        res.send(path);
-    });
-    req.pipe(req.busboy);
-});
-
 module.exports = router;

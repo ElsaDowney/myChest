@@ -1,5 +1,4 @@
 import React from "react";
-import request from "superagent";
 
 const AddList = React.createClass({
     getInitialState: function () {
@@ -25,8 +24,8 @@ const AddList = React.createClass({
         this.setState({style: item});
 
     },
-    onSort: function (item) {
-        this.setState({sort: item}, function () {
+    onSort:function (item) {
+        this.setState({sort:item},function () {
             console.log(this.state.style);
         });
     },
@@ -41,24 +40,21 @@ const AddList = React.createClass({
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                "c_id": this.state.c_id,
+                "c_id":this.state.c_id,
                 "season": this.state.season,
                 "style": this.state.style,
                 "sort": this.state.sort,
                 "image": this.state.image,
-                "colors": this.state.colors,
-                "matches": this.state.matches
+                "colors":this.state.colors,
+                "matches":this.state.matches
             }),
-            // data:this.state,
+
             success: function (data, status) {
                 if (status == 'success') {
                     alert('添加衣物成功');
                 }
             }
         });
-    },
-    onAddImage: function (image) {
-        this.setState({image: image})
     },
     render: function () {
         return (
@@ -68,43 +64,26 @@ const AddList = React.createClass({
                     <div><Color onColor={this.onColor}/></div>
                     <div><Style onStyle={this.onStyle}/></div>
                     <div><Sort onSort={this.onSort}/></div>
-                    <ImageUpload onAddImage={this.onAddImage}/>
-                    <input onClick={this.saveAdd} type="button" value="保存"/>
+                    <div><Image/></div>
+                    <button onClick={this.saveAdd}>保存</button>
                 </form>
             </div>
         )
     }
 });
 
-const ImageUpload = React.createClass({
+const Image = React.createClass({
+    addImage:function (e) {
+        var imageItem = e.target.value;
+        console.log(image);
+    },
+
     render: function () {
-        return <div>
-            <form onSubmit={this.onSubmit}>
-                <input type="file" onChange={this.onFileSelect}/>
-                <input type="submit" value="上传"/>
-            </form>
-        </div>
-    },
-
-    getInitialState: function () {
-        return {};
-    },
-
-    onFileSelect: function (e) {
-        this.setState({image: e.target.files[0]});
-    },
-
-    onSubmit: function (e) {
-        request.put("/upload")
-            .attach("image-file", this.state.image, this.state.image.name)
-            .end(function (err, res) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(res);
-                }
-            });
-        e.preventDefault();
+        return (
+            <div>
+                <input type="file" id="clo-image" onChange={this.addImage}/>
+            </div>
+        )
     }
 });
 
