@@ -1,7 +1,24 @@
 .top {
     margin-top:10%;
 }
-.fm{
-    margin: 1% 1%;
-    border: 1px solid black;
+
+.wrap-colthes{
+    width: 68%;
+    margin: 100px auto;
+    border: 1px solid #d2cdcd;
+    border-radius: 5px;
+}
+
+.photoTop{
+    margin-top:5px;
+}
+
+.photoBottom{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.totalTop{
+    margin-top: 20px;
+    margin-bottom: 10px;
 }

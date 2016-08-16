@@ -8,7 +8,7 @@ const App = React.createClass({
         }
     },
     getName : function(name){
-       this.setState({name:name});
+        this.setState({name:name});
         console.log(name)
     },
     render() {
@@ -16,7 +16,8 @@ const App = React.createClass({
             <div>
                 <Nav name={this.state.name}/>
                 {this.props.children && React.cloneElement(this.props.children, {
-                    onName: this.getName
+                    onName: this.getName,
+                    name:this.state.name
                 })
                 }
             </div>

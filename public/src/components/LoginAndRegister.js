@@ -38,10 +38,21 @@ var LoginAndRegister = React.createClass({
                             <Login onName={this.props.onName}/>
                         </div>
                         <div className={this.state.tab ? 'hidden' : ''}>
-                            <Register/>
+                            <a onClick={this.toLogin} className="title">Login</a>
+                        </div>
+                        <div className="col-md-6  ">
+                            <a onClick={this.toRegister} className="title">Register</a>
                         </div>
                     </div>
+                    <hr/>
+                    <div className={this.state.fixture ? '' : 'hidden'}>
+                        <Login onName={this.props.onName}/>
+                    </div>
+                    <div className={this.state.fixture ? 'hidden' : ''}>
+                        <Register/>
+                    </div>
                 </div>
+               
             );
         }
     })
@@ -110,7 +121,7 @@ var Register = React.createClass({
         const username = $('#user').val();
         const password = $('#password').val();
         const repeatPassword = $('#repeatPassword').val();
-        if(username.length>=2 && (password.length>=6 &&password.length<=12)) {
+        if (username.length >= 2 && (password.length >= 6 && password.length <= 12)) {
             if (password === repeatPassword) {
                 $.ajax({
                     url: '/register',
@@ -133,7 +144,7 @@ var Register = React.createClass({
             } else {
                 alert("哎呀,两次密码不同啦,请重新输入吧");
             }
-        }else {
+        } else {
             alert("格式不正确,请重新注册!");
         }
     }.bind(this),

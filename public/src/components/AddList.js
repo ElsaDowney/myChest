@@ -32,7 +32,6 @@ const AddList = React.createClass({
     saveAdd: function (e) {
         e.preventDefault();
         const c_id = this.state.c_id;
-        console.log(c_id);
         this.setState({c_id: c_id + 1}, function () {
             console.log(this.state.c_id);
         });
@@ -52,7 +51,6 @@ const AddList = React.createClass({
 
             success: function (data, status) {
                 if (status == 'success') {
-                    console.log(data);
                     alert('添加衣物成功');
                 }
             }

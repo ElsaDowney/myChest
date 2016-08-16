@@ -10,7 +10,7 @@ import LoginAndRegister from  './components/LoginAndRegister'
 
 
 render(
-<Router history={browserHistory}>
+    <Router history={browserHistory}>
 
     <Route path="/" component={App}>
         <IndexRoute component={Home}/>
@@ -22,6 +22,6 @@ render(
     </Route>
 </Router>,
     document.getElementById('App')
+
 )
 ;
-

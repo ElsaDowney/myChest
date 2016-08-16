@@ -1,4 +1,26 @@
+const express = require('express');
+var router = express.Router();
 const db = require('../models/user');
+
+//以下代码只是例子,根据自己的需要自行补充代码
+exports.findAll = function (req, res) {
+    db.findAll(function (result) {
+        res.json(result).end();
+    });
+};
+
+exports.save = function(req,res){
+  db.save(req.body,function(result){
+    res.json(result).end();
+  });
+};
+
+exports.AllMatches = function(req,res){
+    db.AllMatches(function(result){
+        res.json(result).end();
+
+    });
+};
 
 exports.selectOneToLogin = function (req, res) {
 
