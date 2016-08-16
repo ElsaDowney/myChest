@@ -5,7 +5,7 @@ const AllMatches = React.createClass({
     getInitialState:function () {
         return {
             clothes:[]
-        }
+        };
     },
 
     componentDidMount: function () {
@@ -22,22 +22,22 @@ const AllMatches = React.createClass({
             if (cloth.sort === 1) {
                 cloth.maches.map((item)=> {
                     show.push({up: cloth.image, down: item});
-                })
+                });
             }
             else if (cloth.sort === 3) {
                 cloth.maches.map((item)=> {
                     show.push({up: cloth.image, down: item});
-                })
+                });
             }
         });
         const showAll = [];
         show.map((cloth)=> {
             const a = allMach.find(i=>i.c_is === cloth.down);
             if (a) {
-                showAll.push({up: cloth.up, down: a.image})
+                showAll.push({up: cloth.up, down: a.image});
             }
             else {
-                showAll.push({up: cloth.up, down: cloth.down})
+                showAll.push({up: cloth.up, down: cloth.down});
             }
         });
 

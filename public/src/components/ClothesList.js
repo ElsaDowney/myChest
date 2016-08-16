@@ -1,4 +1,6 @@
 import React, {Component} from "react";
+import {browserHistory} from 'react-router';
+const Link = require('react-router').Link;
 
 class ClothesList extends Component{
   constructor(){
@@ -9,19 +11,23 @@ class ClothesList extends Component{
   }
 
   componentDidMount(){
-
   const array = [
-    {_id:0,
+    {_id:1,
       userName:"xiaopangzhu",
       password:"123456",
       clo_list:[
         {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
         {c_id:1,season:"summer",color:"yellow",sort:"coat",style:"fashion",image:"1",matches:[]},
-        {c_id:2,season:"summer",color:"blue",sort:"pants",style:"simple",image:"2",matches:[]},
-        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]}
+        {c_id:2,season:"summer",color:"blue",sort:"coat",style:"simple",image:"2",matches:[]},
+        {c_id:3,season:"summer",color:"white",sort:"pants",style:"simple",image:"3",matches:[]},
+        {c_id:4,season:"summer",color:"white",sort:"pants",style:"simple",image:"4",matches:[]},
+        {c_id:5,season:"summer",color:"white",sort:"pants",style:"simple",image:"5",matches:[]},
+        {c_id:6,season:"summer",color:"white",sort:"pants",style:"simple",image:"6",matches:[]},
+        {c_id:7,season:"summer",color:"white",sort:"pants",style:"simple",image:"7",matches:[]},
+        {c_id:8,season:"summer",color:"white",sort:"pants",style:"simple",image:"8",matches:[]},
       ]
     },
-    {_id:1,
+    {_id:0,
       userName:"xiaopangzhu",
       password:"123456",
       clo_list:[
@@ -41,9 +47,8 @@ class ClothesList extends Component{
     });
 
     const _id = 1;
-    $.get("/clothes/1",function(data) {
+    $.get("/clothes/"+_id,function(data) {
       this.setState({allColthes:data});
-      console.log(data)
     }.bind(this)
   );
   }
@@ -65,7 +70,9 @@ class ClothesList extends Component{
       url:"/clothes",
       contentType:"application/json",
       data:JSON.stringify({_id,c_id}),
-      success:function(data){}
+      success:function(data){
+        alert("删除成功!");
+      }
     });
 
   }
@@ -74,37 +81,71 @@ class ClothesList extends Component{
     $("#id").css.display = "inline";
   }
 
+  mouseOver(){
+    $('.a').mouseover(function(){
+      $(this).next().css("opacity",0.7);
+    });
+    $('.delete-wrap').mouseover(function(){
+      $(this).css("opacity",0.7);
+    });
+  }
+
+  mouseOut(){
+    $('.a').mouseout(function(){
+      $(this).next().css("opacity",0);
+    });
+  }
+  addWrap(){
+    $("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
+  }
+
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
       const imgUrl = `../../images/image${section.image}.png`;
       return (
         <div className="imgSize">
-          <img src={imgUrl} id="show"
-              onFocus={this.setStyle.bind(this.id)}/>
-          <span className="delete"
-                onClick={this.remove.bind(this,section)}>X</span>
-              <input type="checkbox" name="selected" className="input-select"
-                    value={section.c_id}/>
+          <div className="img-wrap"></div>
+          <img className="a" src={imgUrl}
+                 onMouseOver={this.mouseOver}
+                 onMouseOut={this.mouseOut}/>
+          <div className="delete-wrap">
+            <span className="glyphicon glyphicon-trash delete"
+              onClick={this.remove.bind(this,section)}>
+            </span>
+          </div>
+          <div className="select">
+            <input type="radio" name={section.sort} className="input-select"
+                    value={section.c_id}
+                   onClick={this.addWrap}/>
+          </div>
         </div>
       )
     });
     return (
       <div>
-        <h4>{clothes.sort}</h4>
+        <span className="title-inline text-success">{clothes.sort}</span>
+        <Link to="AddList">
+          <button className="button button-action button-circle btn-add">
+            <i className="fa fa-plus">
+            </i>
+          </button>
+        </Link>
         <hr />
         {sectionClothes}
-        <button><span className="glyphicon glyphicon-plus"></span></button>
+        <hr />
       </div>
     )
   }
 
   matchClothes(){
-    $('.input-select').css("display","inline");
+    $(".input-select").css("display","inline");
+    $(".btn-float").css("display","inline");
   }
 
   confirmMatch(){
     const matches = [];
-    $("input[name=selected]:checked").each(function(){
+    $("input:checked").each(function(){
       matches.push($(this).val())
     });
 
@@ -114,7 +155,10 @@ class ClothesList extends Component{
      url:"/clothes/matches",
      contentType:"application/json",
      data:JSON.stringify({_id,matches}),
-     success:function(data){}
+     success:function(data){
+       alert("搭配衣服成功");
+       browserHistory.push('/AllMatches');
+     }
    })
 
   }
@@ -135,16 +179,15 @@ class ClothesList extends Component{
           clothesWithClass.push(clothesObj);
         }
       }
-      // console.log(clothesWithClass);
       const clothes = clothesWithClass.map(clothes => {
         return this.getAllSectionWithTig(clothes);
       });
       return (
         <div className="wrap-colthes">
           {clothes}
-          <button className="" onClick={this.matchClothes}>搭配</button>
-          <button className="btn-float" onClick={this.confirmMatch}>确认搭配</button>
-          <p className="btn-foot"><button>点击添加类型</button></p>
+          <button className="btn-match btn btn-primary" onClick={this.matchClothes}>搭配</button>
+          <button className="btn-float btn btn-info" onClick={this.confirmMatch}>确认搭配</button>
+          <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
       )
   }
