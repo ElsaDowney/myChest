@@ -85,10 +85,10 @@ class ClothesList extends Component{
 
   mouseOver(){
     $('.a').mouseover(function(){
-      $(this).next().css("opacity",0.5);
+      $(this).next().css("opacity",0.7);
     });
     $('.delete-wrap').mouseover(function(){
-      $(this).css("opacity",0.5);
+      $(this).css("opacity",0.7);
     });
   }
 
@@ -99,6 +99,8 @@ class ClothesList extends Component{
   }
   addWrap(){
         $("input:checked").parent().siblings(".img-wrap").css("display","inline");
+        $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
+
     }
 
   getAllSectionWithTig(clothes){
