@@ -119,7 +119,7 @@ var Register = React.createClass({
                     contentType: 'application/json',
                     data: JSON.stringify({"name": username, "pwd": password}),
                     success: function (data, status) {
-                        if (status == 'success') {
+                        if (status === 'success') {
                             if (data === '1') {
                                 alert('注册成功啦,请登陆哦');
 
