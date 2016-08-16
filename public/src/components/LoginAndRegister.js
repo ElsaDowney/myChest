@@ -11,14 +11,14 @@ const style = {
 var LoginAndRegister = React.createClass({
         getInitialState: function () {
             return {
-                fixture: true
+                tab: true
             }
         },
         toLogin: function () {
-            this.setState({fixture: true});
+            this.setState({tab: true});
         },
         toRegister: function () {
-            this.setState({fixture: false})
+            this.setState({tab: false})
         },
         render: function () {
             return (
@@ -27,17 +27,17 @@ var LoginAndRegister = React.createClass({
                     <div className="panel-heading container loginStyle" id="center" style={style}>
                         <div className="row">
                             <div className="col-md-6 ">
-                                <a onClick={this.toLogin} className="title">Login</a>
+                                <a onClick={this.toLogin} className="title">Login In</a>
                             </div>
                             <div className="col-md-6  ">
-                                <a onClick={this.toRegister} className="title">Register</a>
+                                <a onClick={this.toRegister} className="title">Sign Up</a>
                             </div>
                         </div>
                         <hr/>
-                        <div className={this.state.fixture ? '' : 'hidden'}>
+                        <div className={this.state.tab ? '' : 'hidden'}>
                             <Login onName={this.props.onName}/>
                         </div>
-                        <div className={this.state.fixture ? 'hidden' : ''}>
+                        <div className={this.state.tab ? 'hidden' : ''}>
                             <Register/>
                         </div>
                     </div>
@@ -143,7 +143,7 @@ var Register = React.createClass({
         if (username.length < 2) {
             $('.user').append('<div class="remarkName">' + "长度应不小于2位!请修改!" + '</div>');
         } else {
-            $(".remark").remove();
+            $(".remarkName").remove();
         }
     },
     judgePassword: function () {
@@ -151,7 +151,7 @@ var Register = React.createClass({
         if (password.length < 6 || password.length > 12) {
             $('.password').append('<div class="remarkPassword">' + "密码应为6到12位!请修改!" + '</div>');
         } else {
-            $(".remark").remove();
+            $(".remarkPassword").remove();
         }
 
     },
