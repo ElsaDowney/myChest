@@ -61,7 +61,7 @@ const AllMatches = React.createClass({
         const allMatches=this.getAllMatches().map((cloth,index)=>{
             return this.getStyle(cloth,index);
         });
-      return <div className="container  top  wrap-colthes" >
+      return <div className="container  top  wrap-colthes matchesbackground" >
           {allMatches}
       </div>
     }

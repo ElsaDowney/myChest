@@ -10,7 +10,7 @@
 }
 
 .photoTop{
-    margin-top:5px;
+    margin-top:20px;
 }
 
 .photoBottom{
@@ -21,4 +21,10 @@
 .totalTop{
     margin-top: 20px;
     margin-bottom: 10px;
+}
+
+.matchesbackground{
+    height: 100%;
+    border:1px solid  #deafd4;
+    background:url('../images/matches.jpg') ;
 }
