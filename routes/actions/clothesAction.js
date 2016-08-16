@@ -18,17 +18,21 @@ exports.save = function(req,res){
   });
 };
 
+
+
 exports.addList = function (req, res) {
+    console.log(req.body.c_id);
     const data = {
         c_id: req.body.c_id,
         season: req.body.season,
         style: req.body.style,
         sort: req.body.sort,
-        image: req.body.image,
         colors: req.body.colors,
-        matches: req.body.matches
+        matches: req.body.matches,
+        image:req.body.image
     };
     clothes.add(data,function (result) {
-        res.json(result).end();
+        // res.json(result).end();
+        res.send(req.body);
     })
 };

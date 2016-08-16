@@ -22,8 +22,6 @@ function makeSever() {
 
   app.use(express.static('public'));
 
-  const bodyParser = require('body-parser');
-  app.use(bodyParser.json());
 
   app.use('/', require('./routes/index'));
 
