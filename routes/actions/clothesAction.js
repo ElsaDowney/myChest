@@ -20,15 +20,27 @@ exports.save = function(req,res){
 
 exports.addList = function (req, res) {
     const data = {
-        c_id: req.body.c_id,
-        season: req.body.season,
-        style: req.body.style,
-        sort: req.body.sort,
-        image: req.body.image,
-        colors: req.body.colors,
-        matches: req.body.matches
+        u_id:req.body.u_id,
+        clo_list:{
+            c_id: req.body.c_id,
+            season: req.body.season,
+            style: req.body.style,
+            sort: req.body.sort,
+            image: req.body.image,
+            colors: req.body.colors,
+            matches: req.body.matches
+        }
     };
     clothes.add(data,function (result) {
         res.json(result).end();
     })
 };
+
+exports.getUserId = function (req, res) {
+    clothes.getAllClothes(req.params.name,function (result) {
+        res.json(result._id).end();
+    });
+};
+
+
+

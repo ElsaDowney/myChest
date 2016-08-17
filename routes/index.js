@@ -20,16 +20,17 @@ router.get('/allMatches',matchAction.AllMatches);
 router.get('/allMatches/:name',matchAction.AllMatches);
 
 router.post('/addList', clothesAction.addList);
+router.get('/getUserId/:name',clothesAction.getUserId);
 
 var busboy = require("connect-busboy");
 router.use(busboy())
 
 router.put("/upload", function(req, res){
-    console.log(req.busboy);
-    req.busboy.on("file", function(fieldName, file){
-        console.log(fieldName, file);
+    req.busboy.on("file", function(fieldName, file, c_id){
 
-        var path = __dirname + "/../public/images/" + 'test111.jpg';
+        var imageName = 'image'+ c_id.toString()+'.jpg';
+        console.log(imageName);
+        var path = __dirname + "/../public/images/" + imageName;
         var writeStream = require('fs').createWriteStream(path)
 
         file.on('data', function(data) {
@@ -45,7 +46,7 @@ router.put("/upload", function(req, res){
             writeStream.close();
         });
 
-        res.send(path);
+        res.send(imageName);
     });
     req.pipe(req.busboy);
 });

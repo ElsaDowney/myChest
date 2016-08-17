@@ -33,17 +33,36 @@ exports.save = function (data, callback) {
     })
 };
 
+// const data = {
+//     u_id:req.body.u_id,
+//     clo_list:{
+//         c_id: req.body.c_id,
+//         season: req.body.season,
+//         style: req.body.style,
+//         sort: req.body.sort,
+//         image: req.body.image,
+//         colors: req.body.colors,
+//         matches: req.body.matches
+//     }
+// };
+
+// db.myFirstCollection.update({_id:1},{$push:{"auther":{"name":1}}})
 exports.add = function (data, callback) {
     var insertData = function (db, callback) {
-        const collection = db.collection('list');
+        const collection = db.collection('clothes');
+        console.log(data.u_id);
+        console.log(data.clo_list);
+        collection.update({_id:data.u_id},
+            {$push:{"clo_list":data.clo_list} });
 
-        collection.insert(data, function (err, result) {
-            if (err) {
-                console.log('Error:' + err);
-                return;
-            }
-            callback(result);
-        });
+        // collection.insert(data, function (err, result) {
+        //     console.log(data);
+        //     if (err) {
+        //         console.log('Error:' + err);
+        //         return;
+        //     }
+        //     callback(result);
+        // });
     };
 
     MongoClient.connect(url, function (err, db) {
