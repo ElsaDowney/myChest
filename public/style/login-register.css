@@ -37,7 +37,9 @@
 
     height: 650px;
     border:1px solid  #deafd4;
-    background:url('../images/login3.jpg') ;
+    background-color: #f0caf8;
+    opacity: 0.5;
+    /*background:url('../images/login3.jpg') ;*/
 }
 .loginOut{
     cursor:pointer;

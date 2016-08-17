@@ -7,7 +7,6 @@ const Nav = React.createClass({
     },
     render() {
         let info = '';
-        console.log(this.props.name);
         if (this.props.name) {
             info = this.props.name + '你好!';
         }

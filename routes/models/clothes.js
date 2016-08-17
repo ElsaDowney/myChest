@@ -3,10 +3,10 @@ const MongoClient = require('mongodb').MongoClient;
 //数据库命名为myChest
 const url = 'mongodb://localhost:27017/myChest';
 
-exports.getAllClothes = function (_id,callback) {
+exports.getAllClothes = function (userName,callback) {
     MongoClient.connect(url, function (err, db) {
         const collection = db.collection('clothes');
-        collection.findOne({_id:parseInt(_id)},function (err, docs) {
+        collection.findOne({userName:userName},function (err, docs) {
             callback(docs);
         });
         db.close();
@@ -16,7 +16,7 @@ exports.getAllClothes = function (_id,callback) {
 exports.deleteOneClothes = function(idObj,callback){
     MongoClient.connect(url, function (err, db) {
       const collection = db.collection('clothes');
-      collection.update({_id:idObj._id}, {$pull:{"clo_list":{"c_id":idObj.c_id}}},function(err,result){
+      collection.update({userName:idObj.userName}, {$pull:{"clo_list":{"c_id":idObj.c_id}}},function(err,result){
         callback(result)
         });
       db.close();

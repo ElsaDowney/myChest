@@ -28,7 +28,7 @@ class ClothesList extends Component{
       ]
     },
     {_id:0,
-      userName:"xiaopangzhu",
+      userName:"mahong",
       password:"123456",
       clo_list:[
         {c_id:0,season:"summer",color:"red",sort:"coat",style:"fashion",image:"0",matches:[]},
@@ -46,11 +46,13 @@ class ClothesList extends Component{
       success:function(data){}
     });
 
-    const _id = 1;
-    $.get("/clothes/"+_id,function(data) {
+    // const userName = "xiaopangzhu";
+    const userName = this.props.name;
+    $.get("/clothes/"+userName,function(data) {
       this.setState({allColthes:data});
     }.bind(this)
   );
+
   }
 
   findClothesType(type,clothes){
@@ -64,12 +66,13 @@ class ClothesList extends Component{
     allColthes.splice(index,1);
     this.setState({allColthes});
 
-    const _id = 1;
+    // const userName = "xiaopangzhu";
+    const userName = this.props.name;
     $.ajax({
       type:"DELETE",
       url:"/clothes",
       contentType:"application/json",
-      data:JSON.stringify({_id,c_id}),
+      data:JSON.stringify({userName,c_id}),
       success:function(data){
         alert("删除成功!");
       }
@@ -152,12 +155,13 @@ class ClothesList extends Component{
       matches.push($(this).val())
     });
 
-    const _id = 1;
+    // const userName = "xiaopangzhu";
+    const userName = this.props.name;
    $.ajax({
      type:"POST",
      url:"/clothes/matches",
      contentType:"application/json",
-     data:JSON.stringify({_id,matches}),
+     data:JSON.stringify({userName,matches}),
      success:function(data){
        alert("搭配衣服成功");
        browserHistory.push('/AllMatches');
@@ -191,7 +195,7 @@ class ClothesList extends Component{
           <button className="btn-match btn btn-primary"
                   onClick={this.matchClothes}
                   onDoubleClick={this.hiddenMatch}>搭配</button>
-          <p className="btn-foot"><button className="btn btn-info" onClick={this.confirmMatch}>确认搭配</button></p>
+                <p className="btn-foot"><button className="btn btn-info" onClick={this.confirmMatch.bind(this)}>确认搭配</button></p>
           <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
       )
