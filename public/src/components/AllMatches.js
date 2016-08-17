@@ -31,8 +31,8 @@ const AllMatches = React.createClass({
     },
 
     getStyle:function (clothes,index) {
-      const up = `../../images/image${clothes.up}.png`;
-      const down = `../../images/image${clothes.down}.png`;
+      const up = `../../images/image${clothes.up}.jpg`;
+      const down = `../../images/image${clothes.down}.jpg`;
 
       return <div className="totalTop">
           <form key={index} className="col-sm-6 col-md-3 ">

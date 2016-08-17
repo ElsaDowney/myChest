@@ -105,7 +105,7 @@ class ClothesList extends Component{
 
   getAllSectionWithTig(clothes){
     const sectionClothes = clothes.allSections.map(section => {
-      const imgUrl = `../../images/image${section.image}.png`;
+      const imgUrl = `../../images/image${section.image}.jpg`;
       return (
         <div className="imgSize">
           <div className="img-wrap"></div>
