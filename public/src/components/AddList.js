@@ -4,6 +4,7 @@ import request from "superagent";
 const AddList = React.createClass({
     getInitialState: function () {
         return {
+            preC_id:0,
             c_id: 0,
             season: "",
             style: "",
@@ -15,21 +16,15 @@ const AddList = React.createClass({
     },
     componentDidMount: function () {
         const userName = this.props.name;
-        $.get('/getUserId/'+userName).then(data => {
+
+        $.get("/clothes/" + userName).then(data => {
+            let clo_list = data;
             console.log(data);
-            this.setState({u_id:data});
-        });
-        $.get("/clothes/"+userName).then(data => {
-            // this.setState({allColthes:data});
-            // const clo_list = data;
-            console.log(data);
-            // if(clo_list.length !== 0) {
-            //     var preC_id = parseInt(clo_list[length - 1].c_id)
-            //     console.log(preC_id);
-            //     this.setState({c_id: preC_id + 1}, function () {
-            //         console.log(this.state.c_id);
-            //     });
-            // }
+            if (clo_list.length !== 0) {
+                var preC_id = parseInt(clo_list[clo_list.length - 1].c_id);
+                console.log(preC_id);
+                this.setState({preC_id: preC_id});
+            }
         });
 
     },
@@ -49,7 +44,12 @@ const AddList = React.createClass({
         this.setState({sort: item});
     },
     onAddImage: function (item) {
-        this.setState({image:item});
+        this.setState({image: item});
+    },
+    setC_id:function (item) {
+        this.setState({c_id: item},function () {
+            console.log('我是最终的c_id');
+        });
     },
     saveAdd: function (e) {
         e.preventDefault();
@@ -59,7 +59,7 @@ const AddList = React.createClass({
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                "u_id":this.state.u_id,
+                "userName": this.props.name,
                 "c_id": this.state.c_id,
                 "season": this.state.season,
                 "style": this.state.style,
@@ -94,7 +94,9 @@ const AddList = React.createClass({
                             <Sort onSort={this.onSort}/>
                         </div>
 
-                        <div><ImageUpload onAddImage={this.onAddImage} c_id={this.state.c_id}/></div>
+                        <div><ImageUpload onAddImage={this.onAddImage}
+                                          preC_id={this.state.preC_id}
+                                          setC_id={this.setC_id}/></div>
                         <input onClick={this.saveAdd} type="button" value="保存" className="btn btn-primary"/>
 
                     </form>
@@ -124,15 +126,17 @@ const ImageUpload = React.createClass({
     },
 
     onSubmit: function (e) {
-        var c_id=this.props.c_id.toString();
+        var c_id = this.props.preC_id +1;
+        this.props.setC_id(c_id);
+
         request.put("/upload")
-            .attach("image-file", this.state.image, c_id)
+            .attach("image-file", this.state.image, c_id.toString())
             .end((err, res) => {
                 if (err) {
                     console.log(err);
                 } else {
                     const imageItem = res.text;
-                    console.log('return:::::::'+imageItem);
+                    console.log('return:::::::' + imageItem);
                     this.props.onAddImage(imageItem)
                 }
             });
@@ -143,6 +147,7 @@ const ImageUpload = React.createClass({
 const Sort = React.createClass({
 
     selectSort: function (e) {
+        console.log(e.target.value);
         this.props.onSort(e.target.value);
     },
 
@@ -150,8 +155,8 @@ const Sort = React.createClass({
         return (
             <div>
                 <select onChange={this.selectSort} className="form-control">
-                    <option value="上衣">上衣</option>
-                    <option value="裤子">裤子</option>
+                    <option value="coat">上衣</option>
+                    <option value="pants">裤子</option>
                 </select>
             </div>
         )
