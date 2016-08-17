@@ -1,5 +1,5 @@
-*{
-  font-family: "微软雅黑";
+* {
+    font-family: "微软雅黑";
 }
 
 .imgSize{
@@ -7,11 +7,12 @@
   position: relative;
 }
 
-.imgSize img{
-  width:150px;
-  height:180px;
-  margin: 10px 10px;
+.imgSize img {
+    width: 150px;
+    height: 180px;
+    margin: 10px 10px;
 }
+
 
 .img-wrap{
   display:none;
@@ -23,15 +24,27 @@
   height:180px;
   left:10px;
   top: 10px;
-
 }
 
-.wrap-colthes{
-  width: 68%;
-  padding-top:20px;
-  margin: 100px auto;
-  border: 1px solid #d2cdcd;
-  border-radius: 5px;
+.wrap-colthes {
+    width: 68%;
+    padding-top: 20px;
+    margin: 100px auto;
+    border: 1px solid #d2cdcd;
+    border-radius: 5px;
+}
+
+.delete-wrap {
+    display: inline-block;
+    position: relative;
+    top: -75px;
+    left: -38px;
+    background: #7e7878;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    line-height: 30px;
+    text-align: center;
 }
 
 .delete-wrap{
@@ -51,11 +64,66 @@
   color: black;
 }
 
-.select{
-  width: 170px;
-  text-align: center;
+.select {
+    width: 170px;
+    text-align: center;
 }
 
+.input-select {
+    display: none;
+    /*background-color: red;*/
+    outline: none;
+    /*border:0;*/
+
+    border: 10px groove blue;
+    width: 20px;
+    height: 20px;
+    filter: progid:DXImageTransform.microsoft.gradient(gradienttype=1, startColorStr=cyan, endColorStr=red);
+
+}
+
+.title-inline {
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: -12px;
+    display: inline-block;
+    text-shadow: 0.1em 0.1em 0.15em #333;
+}
+
+.btn-add {
+    position: relative;
+    margin-bottom: 5px;
+    float: right;
+    right: 10px;
+    top: -8px;
+}
+
+.btn-float {
+    position: fixed;
+    right: 6%;
+    top: 55%;
+}
+
+.btn-match {
+    position: fixed;
+    right: 6%;
+    top: 40%;
+    font-size: 20px;
+    bottom: 30px;
+}
+
+.btn-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+
+}
+
+.text-match {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+}
 .input-select{
   display:none;
   outline:none;
@@ -95,6 +163,6 @@
   top: 40%;
 }
 
-.btn-foot{
-  text-align: center;
+.btn-foot {
+    text-align: center;
 }

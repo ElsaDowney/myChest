@@ -96,8 +96,18 @@ class ClothesList extends Component{
     });
   }
   addWrap(){
-    $("input:checked").parent().siblings(".img-wrap").css("display","inline");
-    $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
+    // let a  = $('input:radio').attr('checked');
+    alert($('#select').attr("checked"));
+    // if($('input:radio').attr('checked')){
+      alert("dfhids");
+      $("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    // }
+      // else{
+    //   $("input:checked").parent().siblings(".img-wrap").css("display","none");
+    // }
+    // }
+    // $ 2("input:checked").parent().siblings(".img-wrap").css("display","inline");
+    // $("input:not(:checked)").parent().siblings(".img-wrap").css("display","none");
   }
 
   getAllSectionWithTig(clothes){
@@ -115,7 +125,7 @@ class ClothesList extends Component{
             </span>
           </div>
           <div className="select">
-            <input type="radio" name={section.sort} className="input-select"
+            <input type="radio" name={section.sort} className="input-select"  id="select"
                     value={section.c_id}
                    onClick={this.addWrap}/>
           </div>
@@ -140,7 +150,10 @@ class ClothesList extends Component{
 
   matchClothes(){
     $(".input-select").css("display","inline");
-    $(".btn-float").css("display","inline");
+  }
+
+  hiddenMatch(){
+    $(".input-select").css("display","none");
   }
 
   confirmMatch(){
@@ -185,8 +198,10 @@ class ClothesList extends Component{
       return (
         <div className="wrap-colthes">
           {clothes}
-          <button className="btn-match btn btn-primary" onClick={this.matchClothes}>搭配</button>
-          <button className="btn-float btn btn-info" onClick={this.confirmMatch}>确认搭配</button>
+          <button className="btn-match btn btn-primary"
+                  onClick={this.matchClothes}
+                  onDoubleClick={this.hiddenMatch}>搭配</button>
+          <p className="btn-foot"><button className="btn btn-info" onClick={this.confirmMatch}>确认搭配</button></p>
           <p className="btn-foot"><button className="btn btn-info" disabled="disabled">点击添加类型</button></p>
         </div>
       )

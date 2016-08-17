@@ -11,14 +11,14 @@ const style = {
 var LoginAndRegister = React.createClass({
         getInitialState: function () {
             return {
-                fixture: true
+                tab: true
             }
         },
         toLogin: function () {
-            this.setState({fixture: true});
+            this.setState({tab: true});
         },
         toRegister: function () {
-            this.setState({fixture: false})
+            this.setState({tab: false})
         },
         render: function () {
             return (
@@ -27,21 +27,22 @@ var LoginAndRegister = React.createClass({
                     <div className="panel-heading container loginStyle" id="center" style={style}>
                         <div className="row">
                             <div className="col-md-6 ">
-                                <a onClick={this.toLogin} className="title">Login</a>
+                                <a onClick={this.toLogin} className="title">Login In</a>
                             </div>
                             <div className="col-md-6  ">
-                                <a onClick={this.toRegister} className="title">Register</a>
+                                <a onClick={this.toRegister} className="title">Sign Up</a>
                             </div>
                         </div>
                         <hr/>
-                        <div className={this.state.fixture ? '' : 'hidden'}>
+                        <div className={this.state.tab ? '' : 'hidden'}>
                             <Login onName={this.props.onName}/>
                         </div>
-                        <div className={this.state.fixture ? 'hidden' : ''}>
-                            <Register/>
+                        <div className={this.state.tab ? 'hidden' : ''}>
+                           <Register/>
                         </div>
                     </div>
                 </div>
+
             );
         }
     })
@@ -61,11 +62,11 @@ var Login = React.createClass({
             data: JSON.stringify({"name": username, "pwd": password}),
 
             success: function (data, status) {
-                if (status == 'success') {
+                if (status === 'success') {
                     if (data === '0') {
-                        alert("用户不存在,请先注册");
+                        alert("亲,用户不存在,请先注册哦");
                     } else {
-                        alert("登陆成功");
+                        alert("嘻嘻,登陆成功啦");
                         this.props.onName(username);
 
                         browserHistory.push('/');
@@ -79,12 +80,13 @@ var Login = React.createClass({
         return (
             <div>
                 <div >
-                    用户名: <input type="text" className="form-control"
-                                id="loginName" placeholder="请输入用户名"/>
+                    <input type="text" className="form-control"
+                           id="loginName" placeholder="Username"/>
                 </div>
+                <br/>
                 <div>
-                    密码: <input type="password" className="form-control"
-                               id="loginPassword" placeholder="请输入密码"/>
+                    <input type="password" className="form-control"
+                           id="loginPassword" placeholder="Password"/>
                 </div>
                 <div >
                     <div className="checkbox">
@@ -95,7 +97,7 @@ var Login = React.createClass({
                 </div>
                 <div className="buttonCenter">
                     <button type="submit" onClick={this.login}
-                            className="btn btn-default ">登陆
+                            className="btn btn-default ">Login In
                     </button>
                 </div>
             </div>
@@ -109,43 +111,48 @@ var Register = React.createClass({
         const username = $('#user').val();
         const password = $('#password').val();
         const repeatPassword = $('#repeatPassword').val();
-        if (password === repeatPassword) {
-            $.ajax({
-                url: '/register',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({"name": username, "pwd": password}),
-                success: function (data, status) {
-                    if (status == 'success') {
-                        if (data === '1') {
-                            alert('注册成功,请登陆');
+        if (username.length >= 2 && (password.length >= 6 && password.length <= 12)) {
+            if (password === repeatPassword) {
+                $.ajax({
+                    url: '/register',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"name": username, "pwd": password}),
+                    success: function (data, status) {
+                        if (status === 'success') {
+                            if (data === '1') {
+                                alert('注册成功啦,请登陆哦');
 
-                        }
-                        else {
-                            alert("该用户已存在,不能进行注册");
+                            }
+                            else {
+                                alert("亲,您的账户已存在,不能再进行注册哦");
+                            }
                         }
                     }
-                }
 
-            });
+                });
+            } else {
+                alert("哎呀,两次密码不同啦,请重新输入吧");
+            }
         } else {
-            alert("两次密码不同,请重新输入");
+            alert("格式不正确,请重新注册!");
         }
-    },
+    }.bind(this),
+
     judgeUserName: function () {
         const username = $('#user').val();
         if (username.length < 2) {
-            $('.user').append('<div class="remark">' + "长度应不小于2位!请修改!" + '</div>');
+            $('.user').append('<div class="remarkName">' + "长度应不小于2位!请修改!" + '</div>');
         } else {
-            $(".remark").remove();
+            $(".remarkName").remove();
         }
     },
     judgePassword: function () {
         const password = $('#password').val();
         if (password.length < 6 || password.length > 12) {
-            $('.password').append('<div class="remark">' + "密码应为6到12位!请修改!" + '</div>');
+            $('.password').append('<div class="remarkPassword">' + "密码应为6到12位!请修改!" + '</div>');
         } else {
-            $(".remark").remove();
+            $(".remarkPassword").remove();
         }
 
     },
@@ -153,28 +160,28 @@ var Register = React.createClass({
         return (
             <div>
                 <div className="user">
-                    用户名:
                     <input type="text" className="form-control"
                            onChange={this.judgeUserName}
-                           id="user" placeholder="请输入用户名"/>
+                           id="user" placeholder="Username"/>
                 </div>
-
+                <br/>
                 <div className="password form-group">
-                    密码: <input type="password" className="form-control"
-                               onClick={this.judgePassword}
-                               id="password" placeholder="请输入密码"/>
+                    <input type="password" className="form-control"
+                           onClick={this.judgePassword}
+                           id="password" placeholder="Password"/>
                 </div>
+                <br/>
                 <div className="repeatPassword form-group">
-                    再次确认密码: <input type="password" className="form-control"
-                                   id="repeatPassword"
-                                   onClick={this.judgeRepeatPassword}
-                                   placeholder="请再次确认密码"/>
+                    <input type="password" className="form-control"
+                           id="repeatPassword"
+                           onClick={this.judgeRepeatPassword}
+                           placeholder="Repeat Password"/>
                 </div>
                 <hr/>
                 <div className="buttonCenter">
                     <button type="submit"
                             onClick={this.commit}
-                            className="btn btn-default">注册
+                            className="btn btn-default">Sign Up
                     </button>
                 </div>
 
