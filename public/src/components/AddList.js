@@ -109,9 +109,13 @@ const AddList = React.createClass({
 const ImageUpload = React.createClass({
     render: function () {
         return <div>
-            <form onSubmit={this.onSubmit}>
-                <input type="file" onChange={this.onFileSelect} name="image"/>
-                <input type="submit" value="上传" className="btn btn-primary"/>
+            <form onSubmit={this.onSubmit} className="form-group">
+                <label for="uploadFile">上传宝贝：</label>
+                <input id="uploadFile" type="file" onChange={this.onFileSelect} name="image" className="form-control"/>
+                <span className="input-group-btn">
+                    
+                    <input type="submit" value="确定上传" className="btn btn-primary btn-sm"/>
+                </span>
             </form>
         </div>
     },
@@ -154,7 +158,8 @@ const Sort = React.createClass({
     render: function () {
         return (
             <div>
-                <select onChange={this.selectSort} className="form-control">
+                <label for="seleteSort">选择类别：</label>
+                <select id="seleteSrt" onChange={this.selectSort} className="form-control">
                     <option value="coat">上衣</option>
                     <option value="pants">裤子</option>
                 </select>
@@ -172,7 +177,8 @@ const Style = React.createClass({
     render: function () {
         return (
             <div>
-                <select multiple="multiple" onChange={this.selectStyle} className="form-control">
+                <label for="selectStyle">选择风格：</label>
+                <select id="selectStyle" multiple="multiple" onChange={this.selectStyle} className="form-control">
                     <option value="小清新">小清新</option>
                     <option value="森女风">森女风</option>
                     <option value="欧美风">欧美风</option>
@@ -192,7 +198,8 @@ const Color = React.createClass({
     render: function () {
         return (
             <div>
-                <select multiple="multiple" onChange={this.selectColor} className="form-control">
+                <label for="selectColor">选择颜色：</label>
+                <select id="selectColor" multiple="multiple" onChange={this.selectColor} className="form-control">
                     <option value="红色">红色</option>
                     <option value="黑色">黑色</option>
                     <option value="黄色">黄色</option>
@@ -215,7 +222,8 @@ const Season = React.createClass({
     render: function () {
         return (
             <div>
-                <select name="select-reason" onChange={this.selectSeason} className="form-control">
+                <label for="selectReason">选择季节：</label>
+                <select id="selectReason" name="select-reason" onChange={this.selectSeason} className="form-control">
                     <option value="spring">春</option>
                     <option value="summer">夏</option>
                     <option value="autumn">秋</option>
