@@ -1,4 +1,5 @@
 import React from "react";
+import request from "superagent";
 
 const AddList = React.createClass({
     getInitialState: function () {
@@ -12,6 +13,14 @@ const AddList = React.createClass({
             matches: []
         }
     },
+    // componentDidMount:function () {
+    //     //未完成
+    //     const name = this.props.name;
+    //     $.get('/col_list'+name).then(data => {
+    //         console.log(data);
+    //         // this.setState({c_id:data});
+    //     });
+    // },
     onSeason: function (item) {
         this.setState({season: item});
     },
@@ -24,8 +33,8 @@ const AddList = React.createClass({
         this.setState({style: item});
 
     },
-    onSort:function (item) {
-        this.setState({sort:item},function () {
+    onSort: function (item) {
+        this.setState({sort: item}, function () {
             console.log(this.state.style);
         });
     },
@@ -40,13 +49,13 @@ const AddList = React.createClass({
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                "c_id":this.state.c_id,
+                "c_id": this.state.c_id,
                 "season": this.state.season,
                 "style": this.state.style,
                 "sort": this.state.sort,
                 "image": this.state.image,
-                "colors":this.state.colors,
-                "matches":this.state.matches
+                "colors": this.state.colors,
+                "matches": this.state.matches
             }),
 
             success: function (data, status) {
@@ -59,31 +68,62 @@ const AddList = React.createClass({
     render: function () {
         return (
             <div className="wrap-colthes">
-                <form id="add-clothes">
-                    <div><Season onSeason={this.onSeason}/></div>
-                    <div><Color onColor={this.onColor}/></div>
-                    <div><Style onStyle={this.onStyle}/></div>
-                    <div><Sort onSort={this.onSort}/></div>
-                    <div><Image/></div>
-                    <button onClick={this.saveAdd}>保存</button>
-                </form>
+            <div className="row">
+            <form id="add-clothes" className="col-md-8 col-md-offset-2">
+            <div className="form-group">
+            <Season onSeason={this.onSeason}/>
+        </div>
+        <div className="form-group">
+            <Color onColor={this.onColor}/>
+        </div>
+        <div className="form-group">
+            <Style onStyle={this.onStyle}/>
+        </div>
+        <div className="form-group">
+            <Sort onSort={this.onSort}/>
+        </div>
+
+        <div><ImageUpload onAddImage={this.onAddImage}/></div>
+        <input onClick={this.saveAdd} type="button" value="保存" className="btn btn-primary"/>
+
+            </form>
+            </div>
+
+
             </div>
         )
     }
 });
 
-const Image = React.createClass({
-    addImage:function (e) {
-        var imageItem = e.target.value;
-        console.log(image);
+const ImageUpload = React.createClass({
+    render: function () {
+        return <div>
+        <form onSubmit={this.onSubmit}>
+        <input type="file" onChange={this.onFileSelect} name="image"/>
+            <input type="submit" value="上传" className="btn btn-primary"/>
+            </form>
+            </div>
     },
 
-    render: function () {
-        return (
-            <div>
-                <input type="file" id="clo-image" onChange={this.addImage}/>
-            </div>
-        )
+    getInitialState: function () {
+        return {};
+    },
+
+    onFileSelect: function (e) {
+        this.setState({image: e.target.files[0]});
+    },
+
+    onSubmit: function (e) {
+        request.put("/upload")
+            .attach("image-file", this.state.image, this.state.image.name)
+            .end(function (err, res) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(res);
+                }
+            });
+        e.preventDefault();
     }
 });
 
@@ -96,10 +136,10 @@ const Sort = React.createClass({
     render: function () {
         return (
             <div>
-                <select onChange={this.selectSort}>
-                    <option value="上衣">上衣</option>
-                    <option value="裤子">裤子</option>
-                </select>
+            <select onChange={this.selectSort} className="form-control">
+            <option value="上衣">上衣</option>
+            <option value="裤子">裤子</option>
+            </select>
             </div>
         )
     }
@@ -114,12 +154,12 @@ const Style = React.createClass({
     render: function () {
         return (
             <div>
-                <select multiple="multiple" onChange={this.selectStyle}>
-                    <option value="小清新">小清新</option>
-                    <option value="森女风">森女风</option>
-                    <option value="欧美风">欧美风</option>
-                    <option value="淑女风">淑女风</option>
-                </select>
+            <select multiple="multiple" onChange={this.selectStyle} className="form-control">
+            <option value="小清新">小清新</option>
+            <option value="森女风">森女风</option>
+            <option value="欧美风">欧美风</option>
+            <option value="淑女风">淑女风</option>
+            </select>
             </div>
         )
     }
@@ -134,15 +174,15 @@ const Color = React.createClass({
     render: function () {
         return (
             <div>
-                <select multiple="multiple" onChange={this.selectColor}>
-                    <option value="红色">红色</option>
-                    <option value="黑色">黑色</option>
-                    <option value="黄色">黄色</option>
-                    <option value="蓝色">蓝色</option>
-                    <option value="绿色">绿色</option>
-                    <option value="灰色">灰色</option>
-                    <option value="紫色">紫色</option>
-                </select>
+            <select multiple="multiple" onChange={this.selectColor} className="form-control">
+            <option value="红色">红色</option>
+            <option value="黑色">黑色</option>
+            <option value="黄色">黄色</option>
+            <option value="蓝色">蓝色</option>
+            <option value="绿色">绿色</option>
+            <option value="灰色">灰色</option>
+            <option value="紫色">紫色</option>
+            </select>
             </div>
         )
     }
@@ -157,12 +197,12 @@ const Season = React.createClass({
     render: function () {
         return (
             <div>
-                <select name="select-reason" onChange={this.selectSeason}>
-                    <option value="spring">春</option>
-                    <option value="summer">夏</option>
-                    <option value="autumn">秋</option>
-                    <option value="winter">冬</option>
-                </select>
+            <select name="select-reason" onChange={this.selectSeason} className="form-control">
+            <option value="spring">春</option>
+            <option value="summer">夏</option>
+            <option value="autumn">秋</option>
+            <option value="winter">冬</option>
+            </select>
             </div>
         )
     }
