@@ -19,9 +19,7 @@ render(
         <Route path="AllMatches" component={AllMatches}/>
         <Route path="ClothesList" component={ClothesList}/>
         <Route path="AddList" component={AddList}/>
+
     </Route>
 </Router>,
-    document.getElementById('App')
-
-)
-;
+    document.getElementById('App'));

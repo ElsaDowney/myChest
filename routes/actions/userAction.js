@@ -1,5 +1,4 @@
 const express = require('express');
-var router = express.Router();
 const db = require('../models/user');
 
 exports.selectOneToLogin = function (req, res) {
