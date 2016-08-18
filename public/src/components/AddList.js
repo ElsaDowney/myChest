@@ -113,7 +113,7 @@ const ImageUpload = React.createClass({
                 <label for="uploadFile">上传宝贝：</label>
                 <input id="uploadFile" type="file" onChange={this.onFileSelect} name="image" className="form-control"/>
                 <span className="input-group-btn">
-                    
+
                     <input type="submit" value="确定上传" className="btn btn-primary btn-sm"/>
                 </span>
             </form>
