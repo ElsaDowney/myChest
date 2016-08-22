@@ -1,8 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
-
-//数据库命名为myChest
 const url = 'mongodb://localhost:27017/myChest';
-
 
 exports.selectOne = function (name, callback) {
     var selectData = function (db, callback) {
@@ -21,11 +18,6 @@ exports.selectOne = function (name, callback) {
         });
     });
 };
-
-
-
-
-
 
 
 exports.register = function (data, callback) {
@@ -61,4 +53,4 @@ exports.register = function (data, callback) {
             }
         });
     });
-}
+};
