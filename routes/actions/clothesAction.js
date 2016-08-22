@@ -1,7 +1,7 @@
 const clothes = require('../models/clothes');
 
 exports.getAllClothes = function (req, res) {
-    clothes.getAllClothes(req.params._id,function (result) {
+    clothes.getAllClothes(req.params.name,function (result) {
         res.json(result.clo_list).end();
     });
 };

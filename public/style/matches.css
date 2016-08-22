@@ -10,12 +10,20 @@
 }
 
 .photoTop{
+<<<<<<< HEAD
     margin-top:20px;
+=======
+    margin-top:5px;
+    width: 80%;
+    height: 80%;
+>>>>>>> 5807fc6f2196ed157c1e99d2ca00c464a51ece0c
 }
 
 .photoBottom{
     margin-top: 5px;
     margin-bottom: 10px;
+    width: 80%;
+    height: 80%;
 }
 
 .totalTop{
@@ -23,8 +31,13 @@
     margin-bottom: 10px;
 }
 
+<<<<<<< HEAD
 .matchesbackground{
     height: 100%;
     border:1px solid  #deafd4;
     background:url('../images/matches.jpg') ;
+=======
+.font-center{
+  text-align: center;
+>>>>>>> 5807fc6f2196ed157c1e99d2ca00c464a51ece0c
 }
